@@ -1,0 +1,125 @@
+# This may not look like it, but it's a -*- makefile -*-
+#
+# sd2iec - SD/MMC to Commodore serial bus interface/controller
+# Copyright (C) 2026 sd2iec_pico2w contributors
+#
+#  Inspired by MMC2IEC by Lars Pontoppidan et al.
+#
+#  FAT filesystem access based on code from ChaN, see tff.c|h.
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; version 2 of the License only.
+#
+#  config: User-configurable options to simplify hardware changes and/or
+#          reduce the code/ram requirements of the code.
+#
+# This file is included in the main sd2iec Makefile and also parsed
+# into autoconf.h. It is the single source of truth for CONFIG_* feature
+# selection for this arch, even though the actual pico2w build is driven
+# by CMake/ninja rather than the per-.c GNU Make rules used by the other
+# arches -- for why.
+#
+# STATUS: draft for Phase 1 (bare core bring-up). Not yet wired into a
+# buildable sd2iec binary -- for phase status.
+
+# Device has serial Commodore bus?
+CONFIG_HAVE_IEC=y
+
+# Device has old parallel IEEE 488 bus?
+#CONFIG_HAVE_IEEE=n
+
+# target architecture
+CONFIG_ARCH=pico
+
+# MCU to compile for
+CONFIG_MCU=rp2350
+NAME_OVERRIDE=pico2w
+
+# MCU frequency in Hz (RP2350 default system clock)
+CONFIG_MCU_FREQ=150000000
+
+# No AVR-style bootloader on this arch (RP2350 boot ROM + partition table
+# handles firmware selection)
+CONFIG_BOOTLOADER=n
+
+# Enable UART debugging
+CONFIG_UART_DEBUG=y
+CONFIG_UART_BAUDRATE=115200
+CONFIG_UART_TX_BUF_SHIFT=10
+CONFIG_COMMAND_CHANNEL_DUMP=y
+
+# Fastloaders -- enabled because the PIO-based bus engine
+# is specifically intended to make these reliable, unlike the ESP8266 arch
+# where they're flagged untested. Re-verify each one against real hardware
+# during Phase 2 before trusting this list.
+
+# Fastloaders: OFF, and this is load-bearing, not a preference.
+#
+# scripts/pico/CMakeLists.txt compiles fastloader.c and pico/llfl-jiffydos.c
+# but none of the src/fl-*.c protocol implementations, because those are not
+# individually guarded by their own CONFIG_LOADER_* and each pulls in llfl-*
+# helpers that this port has not written yet. Turning any of these back on
+# without also adding the matching sources to that file list produces a
+# firmware that does not link.
+#
+# They were enabled here while the actual build used a scratch copy of this
+# file with them commented out -- a copy that lived in a temp directory and
+# is gone. So the config in the repo did not describe the firmware in the
+# repo, and regenerating autoconf.h from it would have broken the build.
+# Found and fixed 2026-09-05 while removing the non-pico board configs.
+#
+# CONFIG_LOADER_TURBODISK=y
+# CONFIG_LOADER_FC3=y
+# CONFIG_LOADER_DREAMLOAD=y
+# CONFIG_LOADER_ULOAD3=y
+# CONFIG_LOADER_GIJOE=y
+# CONFIG_LOADER_EPYXCART=y
+# CONFIG_LOADER_GEOS=y
+# CONFIG_LOADER_WHEELS=y
+# CONFIG_LOADER_NIPPON=y
+# CONFIG_LOADER_AR6=y
+# CONFIG_LOADER_ELOAD1=y
+# CONFIG_LOADER_MMZAK=y
+# CONFIG_LOADER_N0SDOS=y
+# CONFIG_LOADER_SAMSJOURNEY=y
+CONFIG_PARALLEL_DOLPHIN=n
+
+CONFIG_HARDWARE_VARIANT=1
+CONFIG_HARDWARE_NAME=sd2iec-pico2w
+
+# Storage: internal flash only (
+# SD support dropped entirely for this port).
+CONFIG_ADD_SD=n
+CONFIG_NO_SD=y
+CONFIG_ADD_ATA=y
+CONFIG_TWINSD=n
+
+# Wi-Fi / management API (new -- the ESP8266 arch never implemented this
+# despite having the radio).
+CONFIG_NETWORK=y
+
+# Length of error message buffer
+CONFIG_ERROR_BUFFER_SIZE=100
+
+# Length of command/filename buffer
+CONFIG_COMMAND_BUFFER_SIZE=120
+
+# Number of sector buffers (256 byte+a bit of overhead)
+CONFIG_BUFFER_COUNT=6
+
+CONFIG_STACK_TRACKING=n
+CONFIG_MAX_PARTITIONS=4
+
+# No RTC hardware on Pico 2 W by default (out of
+# scope for the initial port; software RTC synced from NTP is a candidate
+# future addition once Wi-Fi is up).
+CONFIG_RTC_SOFTWARE=n
+CONFIG_RTC_DSRTC=n
+
+CONFIG_REMOTE_DISPLAY=n
+CONFIG_DISPLAY_BUFFER_SIZE=40
+
+CONFIG_P00CACHE=n
+
+CONFIG_DEBUG_VERBOSE=n

@@ -1,0 +1,15 @@
+# One line-ending policy for every checkout (Windows, Linux, NTFS mounts):
+# text is LF in the repository and in the working tree.
+* text=auto eol=lf
+
+# Binary, never touched by any conversion.
+*.prg  binary
+*.PRG  binary
+*.d64  binary
+*.D64  binary
+*.pdf  binary
+*.tga  binary
+*.uf2  binary
+*.bin  binary
+*.zip  binary
+*.ZIP  binary

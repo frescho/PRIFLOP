@@ -1,0 +1,22 @@
+.dep
+obj-*
+debug-tools/last_run.txt
+__pycache__/
+tools/primo/*.o
+
+# Editor / tooling state, not project content
+.claude/
+.vscode/
+
+# Primo software library: fetched by tools/primo/fetch-library.sh, not
+# committed. Third-party material by named authors.
+/primo-library/
+
+# Primo OCR output: page renders and extracted text, derived from
+# third-party scans via tools/primo/ocr.sh. Regenerate on demand.
+/primo-ocr/
+
+# Toolchains and reference material copied in by hand -- see
+# tools/external/README.md. Third-party, so never committed; the README is
+# the only tracked file in there. Visible on purpose (no hidden folders).
+/tools/external/*

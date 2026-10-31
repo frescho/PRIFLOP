@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <title>PRIFLOP wiring: Pico 2 W to the 6-pin DIN serial bus plug</title>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <defs>
+    <g id="res">
+      <path d="M0 0 h20 l5 -8 l10 16 l10 -16 l10 16 l10 -16 l10 16 l5 -8 h20" fill="none" stroke="#000" stroke-width="2"/>
+    </g>
+  </defs>
+
+  <!-- Pico 2 W -->
+  <rect x="40" y="50" width="200" height="330" rx="8" fill="#e8f3e8" stroke="#1a5e1a" stroke-width="2"/>
+  <text x="140" y="80" text-anchor="middle" font-weight="bold" font-size="16">Raspberry Pi</text>
+  <text x="140" y="100" text-anchor="middle" font-weight="bold" font-size="16">Pico 2 W</text>
+  <text x="120" y="300" text-anchor="middle" font-size="12" fill="#444">USB: power and flashing</text>
+  <g font-size="13">
+    <text x="232" y="144" text-anchor="end">GP2 (pin 4)</text>
+    <text x="232" y="204" text-anchor="end">GP3 (pin 5)</text>
+    <text x="232" y="264" text-anchor="end">GP6 (pin 9)</text>
+    <text x="232" y="324" text-anchor="end">GP7 (pin 10)</text>
+    <text x="232" y="374" text-anchor="end">GND (pin 3)</text>
+  </g>
+
+  <!-- signal wires with 100 ohm series resistors -->
+  <g stroke="#000" stroke-width="2" fill="none">
+    <path d="M240 140 H330"/><path d="M430 140 H600"/>
+    <path d="M240 200 H330"/><path d="M430 200 H600"/>
+    <path d="M240 260 H330"/><path d="M430 260 H600"/>
+    <path d="M240 320 H330"/><path d="M430 320 H600"/>
+    <path d="M240 370 H600"/>
+  </g>
+  <use href="#res" x="330" y="140"/>
+  <use href="#res" x="330" y="200"/>
+  <use href="#res" x="330" y="260"/>
+  <use href="#res" x="330" y="320"/>
+  <g font-size="12" text-anchor="middle">
+    <text x="390" y="125">R1 100 Ω</text>
+    <text x="390" y="185">R2 100 Ω</text>
+    <text x="390" y="245">R3 100 Ω</text>
+    <text x="390" y="305">R4 100 Ω</text>
+  </g>
+  <g fill="#000"><circle cx="240" cy="140" r="3"/><circle cx="240" cy="200" r="3"/><circle cx="240" cy="260" r="3"/><circle cx="240" cy="320" r="3"/><circle cx="240" cy="370" r="3"/></g>
+
+  <!-- DIN plug -->
+  <rect x="600" y="110" width="140" height="290" rx="8" fill="#eef0f8" stroke="#223" stroke-width="2"/>
+  <text x="670" y="95" text-anchor="middle" font-weight="bold">6-pin DIN plug</text>
+  <g font-size="13">
+    <text x="612" y="144">3  ATN</text>
+    <text x="612" y="204">4  CLOCK</text>
+    <text x="612" y="264">5  DATA</text>
+    <text x="612" y="324">1  SRQ</text>
+    <text x="612" y="374">2  GND</text>
+    <text x="612" y="394" fill="#666">6  RESET (n.c.)</text>
+  </g>
+
+  <!-- bus side -->
+  <g stroke="#000" stroke-width="2" fill="none" stroke-dasharray="6 4">
+    <path d="M740 255 H800"/>
+  </g>
+  <text x="810" y="235" font-size="13">to the C64,</text>
+  <text x="810" y="252" font-size="13">a 1541 chain,</text>
+  <text x="810" y="269" font-size="13">or the Primo's</text>
+  <text x="810" y="286" font-size="13">serial cable</text>
+
+  <text x="40" y="425" font-size="12" fill="#333">The bus is open collector: the pull-ups (1 kΩ to 5 V on a C64) are in the computer, not on this board.</text>
+  <text x="40" y="443" font-size="12" fill="#333">The firmware only switches each pin between input and driven low. Pin numbers are the Pico's physical pins.</text>
+  <text x="40" y="461" font-size="12" fill="#333">Any Pico GND pin will do. The plug's numbering is the standard CBM one (pins 1–6), not its position around the ring.</text>
+</svg>

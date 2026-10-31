@@ -1,0 +1,515 @@
+# The complete library bundle: every program that works in the emulator tests.
+# One program per line: FOLDER/NAME.PRG, then (optional, tab-separated) its label and a description.
+# Lines starting with # are ignored. Add a line to add a program; tools/primo/make_bundles.py builds and measures.
+# From the emulator tests of 2026-10-15.
+CDOS/ASM.PRG	works	Assembler menu; key 1 opens new-program ORG prompt.
+CDOS/COPY-87.PRG	works	Copy utility; menus change to file-type choice on keys
+CDOS/EGETO.PRG	works	EPROM burner: chip-type prompt rejects invalid type on RETURN
+CDOS/GRAPHICS.PRG	works (120 s run)	Graphics System banner and Ready prompt stay static, waiting for input.
+CDOS/HARD-COP.PRG	works	Screen-save menu; S key asks memory or disk
+DEMOKAZI/BETUK.PRG	works	Primo character-set display demo; repeats on I/N prompt.
+DEMOKAZI/BILLEN.PRG	works	Hungarian keyboard help menu; topics change per key
+DEMOKAZI/BREFLEX.PRG	works	Reflex test: reacts to keys with failure and replay prompt
+DEMOKAZI/CIKK.PRG	works	Hungarian demo asks start coordinates and step; reacts to input
+DEMOKAZI/DEMO-10.PRG	works	Branch-taking tree game; asks branches and strategy, then reacts.
+DEMOKAZI/DEMO-11.PRG	works	Othello demo variant: instructions, then play prompt reacts to SPACE.
+DEMOKAZI/DEMO-12.PRG	works (120 s run)	Word-guessing game instructions stay static; bottom line says game starts on S.
+DEMOKAZI/DEMO-13.PRG	works	Same plotter screen as CIKK-CAKK; X0,Y0 prompts respond
+DEMOKAZI/DEMO-2.PRG	works	Tape-message demo; text changes from stop to start after a key
+DEMOKAZI/DEMO-3.PRG	works (120 s run)	Primo character-set info screen; title inverts and flashes between frames.
+DEMOKAZI/DEMO-4.PRG	works	Keyboard help: topic menu, then BRK key explanation page.
+DEMOKAZI/DEMO-5.PRG	works	Hungarian matching game; reports wrong key press.
+DEMOKAZI/DEMO-6.PRG	works (120 s run)	Static text on user-definable characters; waits for a key to page.
+DEMOKAZI/DEMO-7.PRG	works	Drawing demo: circle and triangle drawn progressively across shots.
+DEMOKAZI/DEMO-8.PRG	works	Arithmetic exercises: instruction pages, then operation menu.
+DEMOKAZI/DEMO-9.PRG	works (120 s run)	Hungarian snake game instructions; press-a-key line appears after about 50 s.
+DEMOKAZI/DEMO.PRG	works (fixed, matches the original tape)	Animated Primo emblem demo (tape loader left out, 2026-10-15)
+DEMOKAZI/EMBLEMA.PRG	works (fixed, matches the original tape)	Animated Primo emblem demo (tape loader left out, 2026-10-15)
+DEMOKAZI/FAVAGO.PRG	works	Woodcutter Nim game: branch prompt, strategy choice, moves shown.
+DEMOKAZI/KARAKTER.PRG	works	Character generator: instruction pages change on key presses.
+DEMOKAZI/KIGYO.PRG	works (120 s run)	Snake game instructions stay; press-a-key line appears after about 50 s.
+DEMOKAZI/OTHELLO.PRG	works	Othello demo: instructions, then play prompt reacts to SPACE.
+DEMOKAZI/RAJZOLO.PRG	works	Drawing demo: circle and triangle appear progressively with a label
+DEMOKAZI/SZAMOLJ.PRG	works	Arithmetic practice for pupils; paged instructions, operation choice.
+DEMOKAZI/TARTALOM.PRG	works	Tape demo prompts to stop and start the tape.
+DEMOKAZI/VITORLAS.PRG	works	Hungarian word-guessing game; intro reacts to key, S start ignored.
+EGYEB/3D_CONV.PRG	works (120 s run)	Main menu (DATA, GRAF, DEMO, INIC, MODIFICATION) stays with blinking cursor.
+EGYEB/9._TESZT.PRG	works	Hungarian number-quiz instructions; SPACE advances pages.
+EGYEB/ABRAZIV_KOPASALL.PRG	works	Steel abrasion-resistance calculator prompting carbon and percent ranges.
+EGYEB/ADO.PRG	works	Accounting entry prompts: carry-over and month, reacting to input.
+EGYEB/AMERIKA.PRG	works without CDOS only - test with our DOS	Draws a North America outline, then shows the "MI A FELADAT?" menu, which stays.
+EGYEB/AMOR.PRG	works	Asset value calculator: asks year, prints gross and net value.
+EGYEB/ANGOL.PRG	works	Hangman-style English word guessing; wrong guesses counted and drawn.
+EGYEB/ARC.PRG	works	Dithered portrait picture; image changes slightly between shots.
+EGYEB/ARVETES.PRG	works	Asks material unit price and weight; advances per input
+EGYEB/AUTO_NAPLO.PRG	works	Car logbook: intro, menu, then kilometer prompts after keys.
+EGYEB/BALLISZTIKA.PRG	works	Ballistics: asks launch speed, then angle after RETURN
+EGYEB/BASIC_AUTOSTART.PRG	works (repaired 2026-10-15)	BASIC auto-start instruction screen stays on screen; Ok printed below.
+EGYEB/BEMUTATO.PRG	works	Demo program with animated shapes that change between shots
+EGYEB/BESZEDSZ.PRG	works	Prompt P1 echoes keys and moves to new line on RETURN
+EGYEB/BIORITM.PRG	works (120 s run)	Bioritmus instructions screen stays static, waiting for a touch or key.
+EGYEB/BIORITMUS.PRG	works	Biorhythm; asks birth year, then month, reacts to input
+EGYEB/CAD.PRG	works	3D drawing program: asks X and Y coordinate inputs.
+EGYEB/CALC.PRG	works	Calculator menu; key 1 opens division prompt.
+EGYEB/CIKK-CAKK.PRG	works	Plotter asks start X0,Y0 and step; identical to DEMO-14
+EGYEB/CMD-43EAHA.PRG	works (120 s run)	UNI-MASOLO menu (LOAD, SAVE, TEST, CREATE, OPEN, BREAK) stays with cursor.
+EGYEB/CMD-DF00HA.PRG	works without CDOS only - test with our DOS	Shows the UNI-MASOLO menu (LOAD, SAVE, OPEN, CREATE, TEST, BREAK), waiting for a key.
+EGYEB/CMD-XXXXHA_LEIR.PRG	works	Hungarian CMD autostart utility documentation, text changes across shots
+EGYEB/CMD_LEIRAS.PRG	works (repaired 2026-10-15)	CMD-expansion warning screen (Vigyazat!) stays on screen.
+EGYEB/COPY872.PRG	works	Primo Copy tool: title screen, then directory and command menu.
+EGYEB/COPYBSW.PRG	works	Masolo copier; Save opens a name prompt that echoes input.
+EGYEB/COPYKS38.PRG	works (120 s run)	Copy KS 3.8 menu line stays static with cursor, waiting for input.
+EGYEB/COPYKS_3.1_LEIRA.PRG	works	COPY 3.1 documentation pages; page changes after a keypress.
+EGYEB/COPY_KS_ALAP.PRG	works (120 s run)	K.S. COPY menu (Load, Blokk-load, Save, Auto, Quit) stays, waiting for input.
+EGYEB/COPY_KT_139.PRG	works	Copy menu; S key leads to memory-or-disk prompt
+EGYEB/COPY_KT_87.PRG	works	COPY file utility; menu, then file type prompt after keys.
+EGYEB/CRAMER.PRG	works (120 s run)	Linear equation solver screen stays, asking unknowns count and homogeneous type.
+EGYEB/DALLAM.PRG	works (120 s run)	Asks how many tunes (1-16); waits for input on its own screen.
+EGYEB/DGTMASOL.PRG	works (120 s run)	DGT copier table screen; blinking cursor at => prompt, waits for input.
+EGYEB/DISC_TAPE-COPY.PRG	works	Disassembler/copy tool: printer-port menu reacts to key 1
+EGYEB/DOBGEP.PRG	works	Rhythm machine: tempo, beat and sound screens respond to keys
+EGYEB/EGRAFICS.PRG	works	Circuit-diagram drawing program: instruction pages advance on keys.
+EGYEB/ELIMINACIO-L.PRG	works	Gauss elimination: equation count, then equation prompts.
+EGYEB/EPROMPRG.PRG	works (120 s run)	EPROM menu of checks and options; static, waiting for a number.
+EGYEB/EPRPRG.PRG	works (120 s run)	BASIC EPROM programmer data-format screen; waits for hex/decimal input.
+EGYEB/EROSITO.PRG	works	Op-amp amplifier calculator: asks R1 and C1, draws frequency axis.
+EGYEB/FEJLECKESZITO.PRG	works	Tape header editor; menu then save-to-tape prompt.
+EGYEB/FENYUJSAG.PRG	works	Asks horizontal and vertical magnification, advances on RETURN
+EGYEB/FIRST_MATH.PRG	works (120 s run)	Menu: 1 SUPER, 2 INTERPOLACIO; static, waits for a choice.
+EGYEB/FOLDRAJZ.PRG	works (repaired 2026-10-15)	High-score table with rules prompt stays on screen.
+EGYEB/FORGO3D.PRG	works (repaired 2026-10-15)	Waits at its own yes/no prompt about reorganising files; screen stays.
+EGYEB/FRAKTAL_SYSTEM.PRG	works	Mandelbrot generator prompt; re-prompts on RETURN
+EGYEB/FUNCTION.PRG	works	Function plotter instructions; text changes with each key.
+EGYEB/FUNCTION_GRAF.PRG	works (120 s run)	Asks for the formula; waits for input on its own screen.
+EGYEB/GEOD_1.PRG	works	Geodesy resection: mode choice, then coordinate prompts
+EGYEB/GEPI_SAVE_RS.PRG	works (120 s run)	Gepi save RS instruction screen with "press a key" prompt; stays on screen.
+EGYEB/GRAFICA.PRG	works	PRIMO PASCAL SYSTEM splash; graphics drawn in stages
+EGYEB/GRAFIK.PRG	works (120 s run)	Own text screen asking Kezdhetjuk? (I); waits for a key.
+EGYEB/GRAFIKON.PRG	works	Bar chart drawn progressively, then returns to Ok
+EGYEB/GYORSTAR.PRG	works	Hungarian menu; after keys the screen changes to program-name prompt
+EGYEB/HARD-COPY.PRG	works	Screen-dump setup; printer type menu, then prompt.
+EGYEB/HARD_COPY.PRG	works	Screen-copy setup: printer menu appears, RETURN ends to Ok.
+EGYEB/HAZI_DIJSZAMITO.PRG	works	Electricity bill calculator; asks price and meter readings in turn
+EGYEB/HELYFOGLALO.PRG	works	Reserves 1000 bytes after keypress, returns to Ok
+EGYEB/HIBAKERESES.PRG	works (120 s run)	Optimal error-search title; asks element count, waits for input.
+EGYEB/HIMNUSZ.PRG	works	Hungarian anthem lyrics appear progressively, line by line.
+EGYEB/HIPERKOC.PRG	works	Asks angle and axis, then draws lines step by step.
+EGYEB/HORNER.PRG	works	Polynomial equation solver: degree and integer-coefficient questions.
+EGYEB/IDOMERES_I.PRG	works (120 s run)	Asks for the exact time (h,m,s); waits for input on its own screen.
+EGYEB/ILNPECA.PRG	works	Fishing line selection: intro, then line-type menu and prompts.
+EGYEB/INTEGRAL.PRG	works (120 s run)	Simpson integration screen asking for the function at line 500.
+EGYEB/IQTESZT.PRG	works (120 s run)	Two-part test intro screen waiting for T, S or V key; stays on screen.
+EGYEB/J.I.COPY.PRG	works (120 s run)	COPY menu with LOAD, SAVE, BASIC options; static, cursor blinks.
+EGYEB/KALEIDO.PRG	works	Kaleidoscope of block patterns that changes between shots.
+EGYEB/KAMAT.PRG	works	Loan interest calculator; rejects non-positive loan amount.
+EGYEB/KAZETTA_LISTAZO.PRG	works	Tape catalogue: ID prompt, then page prompt after a key.
+EGYEB/KONYVTAR.PRG	works	Library catalogue menu; accepts input and re-prompts.
+EGYEB/KRESZ.PRG	works	Traffic-rules trainer: title, then topic prompt after SPACE.
+EGYEB/LAJOS_NEWTON.PRG	works	Newton root method; asks degree, then error limit
+EGYEB/LEADO.PRG	works (120 s run)	Menu: load headers (F) or read news (U); static, waits for choice.
+EGYEB/LEGNYOMAS.PRG	works	Air-pressure calculator; re-prompts on empty or invalid input.
+EGYEB/LEIRAS1.PRG	works	Program description pages; advance with RETURN
+EGYEB/LINE.PRG	works	Asks for four coefficients, then prompts again after input.
+EGYEB/LISSAJOU.PRG	works	Asks for two numbers, re-prompts after RETURN; no drawing seen
+EGYEB/LO.PRG	works (120 s run)	Outline horse drawing whose legs and mane shift between shots; Run/Ok at top-left.
+EGYEB/LOGORAJZ.PRG	works without CDOS only - test with our DOS	Draws graphics by itself, then shows the Hasznalati utmutato help text, which stays.
+EGYEB/LOSZI.PRG	works (120 s run)	Multi-page help text with "tovabb=spc" prompt; waits for the space key.
+EGYEB/LOVERSENY.PRG	works	Horse race; horses advance between shots, winner announced
+EGYEB/MAGYARORSZAG_1.PRG	works	Hungary map pointing game; map appears after level choice.
+EGYEB/MAGYARORSZAG_2.PRG	works	Hungarian geography quiz rules; pages change with keys.
+EGYEB/MANDELBROT.PRG	works	Mandelbrot set manager: load, generate or end prompts, re-prompting.
+EGYEB/MANDELKEP.PRG	works (120 s run)	Fractal picture drawn and shown; nearly unchanged across the shots.
+EGYEB/MATRIX_R.PRG	works (repaired 2026-10-15)	Matrix system title screen with free-memory line stays (borderline: Ok below).
+EGYEB/MIEZ.PRG	works	Month and amount prompts; advances after RETURN
+EGYEB/MONTAZSK.PRG	works (120 s run)	Asks its own duration question in Hungarian; cursor blinks, waits for input.
+EGYEB/MOZGOSZ.PRG	works	Data-loading screen with changing digits across shots
+EGYEB/MOZIMUSOR.PRG	works (120 s run)	Hungarian selectable menu of five options; stays and waits for a number.
+EGYEB/MO_VAROSAI.PRG	works (repaired 2026-10-15)	Hungarian map-game instructions and difficulty prompt stay on screen.
+EGYEB/MUSIC_E_S.PRG	works	Music editor: menu, then piano keyboard mode.
+EGYEB/NSTOPPER.PRG	works	Hungarian stopwatch: start, stop, reset, resume keys; time changes.
+EGYEB/NYELV_1.PRG	works (120 s run)	Lesson selector prompt after BASIC Ok/Run; cursor blinks, waits for lesson number.
+EGYEB/OKTATO.PRG	works	Hungarian word-learning menu; key 1 asks to play tape.
+EGYEB/OPTIMALIS_JAVITA.PRG	works	Repair order: asks failed machine count, prints result
+EGYEB/OROKELET.PRG	works	POKE loader instructions; RETURN advances to POKE table
+EGYEB/OROKNAPTAR.PRG	works	Perpetual calendar: menu, then date prompt after key.
+EGYEB/OROSZI.PRG	works (120 s run)	Russian lesson text with answer prompt and blinking cursor; waits for input.
+EGYEB/OROSZ_SZO.PRG	works	Russian vocabulary menu; key 1 prompts tape playback
+EGYEB/PAINT87.PRG	works (120 s run)	Static drawing-program key help screen; stays, waits for a key.
+EGYEB/PALYA.PRG	works	Monopoly board; pieces and counters change between shots.
+EGYEB/PDATA.PRG	works	Hungarian record database: menu, then create-record prompts.
+EGYEB/PERSPEKT.PRG	works (120 s run)	Nested wireframe square tunnel; lines shift position over time.
+EGYEB/POHAR3D.PRG	works	Glass 3D plotting program; prompts for rotation values and reacts
+EGYEB/POLINOM.PRG	works	Polynomial identity menu; choice 1 leads to N prompt
+EGYEB/PRGNYILV.PRG	works without CDOS only - test with our DOS	Disk-utility menu with six numbered options; stays on screen.
+EGYEB/PRGRAFIK.PRG	works	Animated walking figure, then BUM BUM BUM text appears
+EGYEB/PRIMO.PRG	works (120 s run)	A-48 info screen flashes inverse and back; text stays otherwise.
+EGYEB/PRIMOAGY.PRG	works (120 s run)	Dithered picture builds up in bands; "press key to finish" caption at bottom.
+EGYEB/PRIMUSIX.PRG	works	Asks storage capacity, then subunit count; reacts to input
+EGYEB/PROGAJAN.PRG	works	Magazine program catalogue menu; redraws prompt on RETURN.
+EGYEB/PROGRAMTAR.PRG	works	Program catalogue menu; name prompt reacts to typed keys
+EGYEB/PRTIPUS.PRG	works (120 s run)	B-64 memory-info text and ROM character prompt; cursor blinks, waits for input.
+EGYEB/PSZICHOL.PRG	works	Psychology questionnaire; re-prompts for numbered choice on input.
+EGYEB/RAJZOLO(ELETJATE.PRG	works (120 s run)	Instructions screen for a dot-drawing game; stays until RETURN.
+EGYEB/RAJZOLO2.PRG	works	Drawing program: circle and triangle drawn progressively.
+EGYEB/ROMAI_ARAB.PRG	works (120 s run)	Arabic-to-Roman converter menu; stays and waits for a choice.
+EGYEB/RSSL12.PRG	works	R.S.S. loader menu; shows SEARCHING after a key.
+EGYEB/SAKKTABL.PRG	works	Animated checkerboard pattern builds across shots
+EGYEB/SEX-TEST_2.PRG	works	Joke program: intro, slogan screen, date prompt advances
+EGYEB/SHYNT.PRG	works	Hungarian menu: read, playback, end, settings; redraws on RETURN.
+EGYEB/SOKSZOGVONAL.PRG	works (120 s run)	Polygon-drawing program asks for number of corner points; waits for input.
+EGYEB/SOX.PRG	works	Polygon calculator: asks y then x, advances after each input.
+EGYEB/SPEAKER-2.PRG	works	Bar-graph and ship animation with score; changes per shot
+EGYEB/SPEAKER.PRG	works	ZX-Spectrum port prints Hungarian text after SPACE, then blanks
+EGYEB/SPECTRUM.PRG	works (120 s run)	Static Sinclair copyright line at bottom; nothing else changes over time.
+EGYEB/SPECTRUM_LOAD-2.PRG	works (120 s run)	Sinclair Spectrum loader menu with cursor stays on screen.
+EGYEB/SPECTRUM_SCRE-10.PRG	works (120 s run)	PSXTRAXX title picture with animated explosion; stays on screen.
+EGYEB/SPECTRUM_SCRE-11.PRG	works (120 s run)	MATCH DAY by Jon Ritman title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-12.PRG	works (120 s run)	ATIC ATAC title screen with animated graphics; stays on screen.
+EGYEB/SPECTRUM_SCRE-14.PRG	works (120 s run)	SPEC-VENTURE Mastertronic title picture; static, stays on screen.
+EGYEB/SPECTRUM_SCRE-15.PRG	works (120 s run)	FRED Indescomp title picture with Egyptian heads; stays on screen.
+EGYEB/SPECTRUM_SCRE-16.PRG	works (120 s run)	SKOOL DAZE title picture; stays with little movement.
+EGYEB/SPECTRUM_SCRE-17.PRG	works (120 s run)	FULL THROTTLE Micromega title; motorbike graphic animates slightly.
+EGYEB/SPECTRUM_SCRE-18.PRG	works (120 s run)	Software Projects title picture with house and creature; stays on screen.
+EGYEB/SPECTRUM_SCRE-19.PRG	works (120 s run)	Chequered Flag Psion title; car graphic moves across frames.
+EGYEB/SPECTRUM_SCRE-2.PRG	works (120 s run)	Raid Over Moscow title picture, shown and staying, no keys pressed.
+EGYEB/SPECTRUM_SCRE-20.PRG	works (120 s run)	EVERYONE'S A WALLY Mikro-Gen title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-21.PRG	works (120 s run)	AUTO MANIA Mikro-Gen title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-22.PRG	works (120 s run)	BATMAN Ocean title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-23.PRG	works (120 s run)	PSSST Ultimate loading screen picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-24.PRG	works (120 s run)	FLINTSTONES ZX Micro Clube title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-25.PRG	works (120 s run)	NOMAD Ocean title frame picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-26.PRG	works (120 s run)	BABALIBA title picture with Plaf character; stays on screen.
+EGYEB/SPECTRUM_SCRE-27.PRG	works (120 s run)	Fairlight A Prelude title picture; stays on screen.
+EGYEB/SPECTRUM_SCRE-28.PRG	works (120 s run)	BACK TO SKOOL title picture; stays with little movement.
+EGYEB/SPECTRUM_SCRE-29.PRG	works (120 s run)	HOXTER GAMES title picture with mountains; stays on screen.
+EGYEB/SPECTRUM_SCRE-3.PRG	works (120 s run)	Frank N Stein title picture, shown and staying.
+EGYEB/SPECTRUM_SCRE-30.PRG	works (120 s run)	Jack the Nipper title picture with credits, shown and staying.
+EGYEB/SPECTRUM_SCRE-31.PRG	works (120 s run)	Ionis castle title screen with "Press any key to begin".
+EGYEB/SPECTRUM_SCRE-32.PRG	works (120 s run)	Equinox title picture, Mikro-Gen, shown and staying.
+EGYEB/SPECTRUM_SCRE-4.PRG	works (120 s run)	Gotcha title picture with credits, shown and staying.
+EGYEB/SPECTRUM_SCRE-5.PRG	works (120 s run)	Tir Na Nog title picture with Gargoyle Games credit, shown and staying.
+EGYEB/SPECTRUM_SCRE-6.PRG	works (120 s run)	Buggy Blast title picture, Firebird, shown and staying.
+EGYEB/SPECTRUM_SCRE-7.PRG	works (120 s run)	Gladiator title picture, shown and staying.
+EGYEB/SPECTRUM_SCRE-8.PRG	works (120 s run)	Jetpac title picture, Ultimate, shown and staying.
+EGYEB/SPECTRUM_SCRE-9.PRG	works (120 s run)	Turbo Esprit title picture, Durell, shown and staying.
+EGYEB/SPRITE_GRAF.PRG	works	Character designer menu; asks picture count, redraws on RETURN.
+EGYEB/SRSS87.PRG	works	Supercopy RSS 87 menu; SEARCHING appears after key 1.
+EGYEB/STOPPER2.PRG	works (120 s run)	Own STOPPER screen with key instructions and striped graphics; waits for a key.
+EGYEB/SZAMRSZ2.PRG	works	Number-base converter: asks original base, rejects bad input.
+EGYEB/SZEMELYI.PRG	works	Hungarian personal records menu; name prompt after key press
+EGYEB/SZERKESZTO.PRG	works (120 s run)	Hungarian editor menu with keys L, E, O, R, I, U, T, F; stays, waits.
+EGYEB/SZERKESZTO_RS.PRG	works	Info screen (4000-character editor notice), "press a key" prompt, shown and staying.
+EGYEB/SZEXTST2.PRG	works	Love-suitability text program prints Hungarian text after keys
+EGYEB/SZKOP2.PRG	works	Oscilloscope sampling interface; channel A/B prompts, recording start.
+EGYEB/SZOMIDO.PRG	works (120 s run)	NOVA SzoMiDo word game screen with instructions; waits for a key press.
+EGYEB/SZOTAGOLO.PRG	works (120 s run)	Syllabification prompt "Ird be a szot szotagolva!" with blinking cursor; waits for input.
+EGYEB/SZOTAR-4.PRG	works (repaired 2026-10-15)	Szotar title screen with "Kered a szabalyokat? (I/N)" prompt, shown and staying.
+EGYEB/SZOTAR2.PRG	works (repaired 2026-10-15)	Szotar (dictionary) title, "Kered a szabalyokat? (I/N)" prompt, shown and staying.
+EGYEB/TERKEP2.PRG	works (120 s run)	MI A FELADAT? five-item menu with input prompt; stays, waits for choice.
+EGYEB/TORTENELEM.PRG	works	Hungarian history quiz: intro screen, then event menu and questions.
+EGYEB/TOTO.PRG	works	Toto football pool questionnaire; asks match count after keys
+EGYEB/TOTO87.PRG	works	Football pools: asks rows, then next question after input.
+EGYEB/TOTOELL.PRG	works	TOTO checker; tip prompts advance after keypresses.
+EGYEB/TRAFO.PRG	works	Transformer calculator: asks questions and advances on each answer.
+EGYEB/TRAFOMER.PRG	works	Transformer sizing menu; selecting an item opens input prompt
+EGYEB/VEDOAUTO.PRG	works	Automat menu; S opens a save-name prompt echoing input.
+EGYEB/ZENE.PRG	works	Printer-type menu (DATACOOP, PANASONIC, FT-5000, RPR) waits for a key and stays.
+FEJLESZTO/AMON-H32.PRG	works (repaired 2026-10-15)	AMON V1.0 loaded message with "call ?CALL(20924)" instructions; stays on screen.
+FEJLESZTO/AMON-H48.PRG	works (repaired 2026-10-15)	AMON V1.0 loaded message with "call ?CALL(37324)" instructions; stays on screen.
+FEJLESZTO/AMON-H64.PRG	works (repaired 2026-10-15)	AMON V1.0 loaded message with "call ?CALL(53624)" instructions; stays on screen.
+FEJLESZTO/AMON-L.PRG	works (repaired 2026-10-15)	AMON V1.0 loaded message with "call ?CALL(17511)" instructions; stays on screen.
+FEJLESZTO/AMONV11.PRG	works	Monitor address prompt; memory-dump screens change after RETURN.
+FEJLESZTO/ANTICOPY_88.MR.PRG	works (120 s run)	Asks how many lines to print after LOAD; waits at input prompt.
+FEJLESZTO/ANTICOPY_MF.PRG	works	Asks LOAD line count; prompt reacts to RETURN
+FEJLESZTO/ASS.PRG	works (120 s run)	CATALOG command list with its own [> prompt, waiting for input; stays.
+FEJLESZTO/ASSEMB12.PRG	works	Szigma assembler; invalid input answered with HIBAS error message.
+FEJLESZTO/ASSEMBLER.PRG	works (120 s run)	Assembler System '85.2 title with block-glyph prompt; stays on screen (weak evidence).
+FEJLESZTO/ASSMEM.PRG	works (120 s run)	Assembler memory map screen with prompt; stays, cursor blinks.
+FEJLESZTO/ASS_5.PRG	works (120 s run)	Shows its own *** CATALOG *** command menu and a blinking prompt.
+FEJLESZTO/ASS_85.3.PRG	works without CDOS only - test with our DOS	Primo Assembler System '85.3 title with blinking prompt, waiting for input.
+FEJLESZTO/ASS_EDI.PRG	works (120 s run)	Assembler Editor '85.2 title with ??? prompt and blinking cursor; stays.
+FEJLESZTO/ATSZAMOZO.PRG	works	Renumbering tool asks growth step; rejects input with a message
+FEJLESZTO/BB00.PRG	works (120 s run)	BASIC banner, then Ready and blinking &> prompt; waits for input.
+FEJLESZTO/CC8411.PRG	works (120 s run)	HISOFT-C Compiler title lines shown and stay; waits for input.
+FEJLESZTO/CHEOPS88.PRG	works (120 s run)	Scrambled Cheops title with copyright line; static screen stays.
+FEJLESZTO/DATAKESZ.PRG	works	Data tool asks start and end address; advances on input
+FEJLESZTO/DATASOR.PRG	works	DATA-line loader: start and end address prompts advance
+FEJLESZTO/DIASS.PRG	works	Disassembler: loads tables, menu, asks start address
+FEJLESZTO/DISAS88.PRG	works (120 s run)	Disassembler menu PRINTER/VIDEO (P,V) with blinking cursor; waits for key.
+FEJLESZTO/DISASFGY.PRG	works	Disassembler: address prompt, then growing byte and mnemonic listing
+FEJLESZTO/DISASSEMBLER.PRG	works	Disassembler: loads tables, asks mode, then start address.
+FEJLESZTO/DUMP.PRG	works	Hex memory dump; prints dump, then asks address
+FEJLESZTO/EXPBASIC.PRG	works (120 s run)	Expanded BASIC banner and Ready prompt with blinking cursor; static, waits for input.
+FEJLESZTO/EXPBASLE.PRG	works	Expanded BASIC description pages; advance on RETURN.
+FEJLESZTO/FORTH_V1.2.PRG	works (120 s run)	Forth banner, copyright and free-memory line with OK prompt; static, waits for input.
+FEJLESZTO/GENS3.PRG	works	GENS3 assembler: buffer-size prompt, then copyright and command prompt
+FEJLESZTO/GRAPHD86.PRG	works (120 s run)	Graphics system banner and Ready/> prompt with blinking cursor; static, waits for input.
+FEJLESZTO/GRAPHICS85.PRG	works (120 s run)	Graphics system 85.1 banner and Ready/> prompt; static, waits for input.
+FEJLESZTO/GRAPHICS_D.PRG	works	Character generator instructions; pages advance on keypress
+FEJLESZTO/HELP_UTMUTATO.PRG	works (120 s run)	BASIK HELP usage screen with static text, waiting for a key; stays.
+FEJLESZTO/HIPASCAL.PRG	works	Hisoft Pascal startup; prompts advance after key input.
+FEJLESZTO/KODOLO.PRG	works	Developer code-entry tool: prompt advances after each RETURN.
+FEJLESZTO/KULCSSZO_II.PRG	works (repaired 2026-10-15)	Instructions to start with CALL(80*256) and a deletable-BASIC note; stays on screen.
+FEJLESZTO/LOGO.PRG	works	LOGO-style L? prompt re-issued after input; no drawing seen.
+FEJLESZTO/MICRO_2.PRG	works	Data entry: asks item count, then first item name.
+FEJLESZTO/MINI_LOGO.PRG	works	Mini LOGO; new prompt line added after RETURN.
+FEJLESZTO/P-BUG_(Z80_MONI).PRG	works (120 s run)	P-BUG Z80 monitor banner and # prompt with blinking cursor; waits for input.
+FEJLESZTO/PALLASDI.PRG	works	Pallas Z80 assembler editor: command messages react to keys.
+FEJLESZTO/PAS.PRG	works (120 s run)	PAS system Z-80 banner and C> prompt with blinking cursor; static, waits for input.
+FEJLESZTO/PASCAL2.PRG	works	Pascal system; asks end of memory and table length.
+FEJLESZTO/PBUG.PRG	works	P-BUG Z80 monitor; prompt re-issued after each line entered.
+FEJLESZTO/PROLOG.PRG	works	microPROLOG system: prompt accepts lines, shows continuation prompts.
+FEJLESZTO/RENUMBER.PRG	works (repaired 2026-10-15)	Shows its "renumbering ready" message and stays; ends at Ok.
+FEJLESZTO/SCREEN_E_S.PRG	works	Screen save utility: start address prompt, then start option shown.
+FEJLESZTO/SPECGOTO.PRG	works (repaired 2026-10-15)	Hungarian GOTO/GOSUB note saying the explanation is in the listing; stays.
+FEJLESZTO/SPRITEBA.PRG	works (120 s run)	Ready and its own &> prompt after the BASIC banner; cursor waits, static.
+FEJLESZTO/SUPERGRA.PRG	works	Sprite and screen graphics editor; menu leads to drawing screen.
+FEJLESZTO/TLEIRAS.PRG	works (repaired 2026-10-15)	T-language description page with a press-a-key prompt; stays.
+FEJLESZTO/TNYELV.PRG	works (120 s run)	T system 87.8 banner and Ready prompt; static, waits for input.
+FEJLESZTO/Z80MONI.PRG	works (repaired 2026-10-15)	Static Z80 register and memory dump screen with legible hex; stays.
+FEJLESZTO/ZXLISP.PRG	works	Primo LISP prompt; prints syntax errors for each typed line.
+JATEK/21ES.PRG	works (120 s run)	Huszonegyes game title and rules, waits for IGEN/NEM answer; static.
+JATEK/21_A.PRG	works	Card game (21): deals, dealer draws, announces winner.
+JATEK/ABU_BOMBA.PRG	works	Bomb game; plane and bombs move between shots.
+JATEK/ADVENTURE.PRG	works	Text adventure: room description and replies change per command.
+JATEK/AKASZTOF.PRG	works	Hangman-style game: asks player count, then turn count.
+JATEK/AKNAK.PRG	works	Minesweeper: board appears after a key; Hungarian mine-count prompt.
+JATEK/AKNAMEZO.PRG	works	Minefield-style game; intro then playfield with changing stars
+JATEK/AMOBA.PRG	works	Gomoku-style board game; asks row and column, rejects invalid moves
+JATEK/AMOBA2.PRG	works	Gomoku-style game: board appears after a key, move prompts follow.
+JATEK/AMOBA3.PRG	works	Hungarian gomoku; computer answers each player move
+JATEK/AMOBA_(LASSU).PRG	works	Slow gomoku game; input prompts re-prompt after RETURN
+JATEK/ANDROID-NIM.PRG	works	Android NIM game; rules, row selection, animated board.
+JATEK/ANDROID.PRG	works	Android game: strength prompt, then figure screen changes
+JATEK/APOLLO.PRG	works	Apollo space game: name entry, then flight-status screen
+JATEK/APOLLO2.PRG	works	Space game; name prompt, then commander screen after RETURN.
+JATEK/ARIADNE.PRG	works	Ariadne arcade game: level prompt, then blocks move on screen.
+JATEK/ARMAGED.PRG	works	Armageddon title with animated missiles and bottom bar
+JATEK/ASTRO.PRG	works	Astro Blaster-style shooter; invader waves move after start
+JATEK/AUTO-VERSENY.PRG	works	Car race; road scrolls and game-over message appears
+JATEK/AUTO.PRG	works	Formula-1 style racing game, steering with keys, road animates.
+JATEK/AUTOV.PRG	works (repaired 2026-10-15)	Racing game intro: track instructions, run count, press-SPACE prompt; stays.
+JATEK/AUTOZAS.PRG	works	Car road game; instructions change to speed display after keys.
+JATEK/AWARI.PRG	works	Awari board game; asks for player name after a key.
+JATEK/AWARI2.PRG	works	Awari board game: instructions, start choice, then board with moves.
+JATEK/AWARI3.PRG	works	Awari board game; asks rules and start mode, reacts to input
+JATEK/BABCSATA.PRG	works	Bean-taking game: prompts advance after RETURN.
+JATEK/BANDITA.PRG	works (120 s run)	Casino banner and title stay; only a blinking cursor, nothing else changes.
+JATEK/BANYASZ_BERCI.PRG	works (patched)	Manic Miner-like BASIC game for the A-32; patched for 64 KB (a32fix). Title and instructions shown; gameplay unverified.
+JATEK/BARCHOBA.PRG	works	Hungarian 20-questions guessing game with typed answers.
+JATEK/BARLANG.PRG	works	Silversoft ground attack; speed menu, then game HUD appears
+JATEK/BATORLOV.PRG	works	Text adventure; word list appears after answering I
+JATEK/BATORLOV_DEBUG.PRG	works	Text adventure; word list appears after pressing I.
+JATEK/BIBERACH.PRG	works	Reversi-style board game: strength, start prompt, board drawn.
+JATEK/BOGARAK.PRG	works	Bogarak maze: after keys shows game over, score 0
+JATEK/BOMBAZAS.PRG	works (120 s run)	Score bars and moving targets animate; later shows "Jatszol meg egyet?" prompt.
+JATEK/BUBOREKSZURKALO.PRG	works (120 s run)	Instruction screen stays, "any key starts the game"; no animation.
+JATEK/BUVOS_KOCKA.PRG	works	Dice puzzle: instructions, then board that changes after SPACE.
+JATEK/BUVOS_LAMPAK.PRG	works	Lights-out style grid puzzle: width and height prompts answered.
+JATEK/CENTIPED.PRG	works	Centipede: menu, then playfield with enemies after key 1.
+JATEK/CHESS_1.KEZ.UTM.PRG	works	Chess manual pages paged by key; ends with "Jo szorakozast!".
+JATEK/CHESS_1.PRG	works	Chess against computer; moves and sound toggle react.
+JATEK/CSATA.PRG	works	Hungarian battleship; asks shot coordinates, reacts to input
+JATEK/CSEPPKO.PRG	works (120 s run)	Instruction text page stays, waiting for SPACE to page; no animation.
+JATEK/CSIRKEVADASZAT.PRG	works	Chicken hunt game; asks speed setting, reprompts after RETURN.
+JATEK/CYPHERTONE.PRG	works	Tone-memory game: repeat sequence, wrong-answer and score shown
+JATEK/DALLAM.PRG	works	Melody program shows Tavaszi szel text after SPACE, returns to Ok on 1
+JATEK/DAMA.PRG	works (120 s run)	Title banner "PRIMO DAMA JATEK" stays; cursor blinks, nothing else changes.
+JATEK/DAMA2.PRG	works	Draughts: board and coordinate prompts react to RETURN.
+JATEK/DATADEMO.PRG	works	German chess demo; accepts setup input and reacts.
+JATEK/DEMONOK.PRG	works	Demon castle menu; reflex test and game screens respond to keys
+JATEK/DEMOSAKK.PRG	works	German chess demo: setup and piece-position prompts react to input
+JATEK/DOBGEP.PRG	works	Drum rhythm machine: step and volume fields update after keys.
+JATEK/EGER.PRG	works	Mouse-and-cat maze game; mouse moves between shots
+JATEK/EGERVADASZ.PRG	works	Mouse-and-cat maze game; sprites move between shots
+JATEK/ELET2.PRG	works	Game of Life setup prompt; grid pattern changes between shots
+JATEK/ELETJATEK.PRG	works	Game of Life: instruction pages advance, cell field animates.
+JATEK/ELETJATEK2.PRG	works	Game of Life: instructions, then cell patterns change between shots.
+JATEK/ELVHAZ.PRG	works	House game: instructions, then difficulty prompt after a key.
+JATEK/EMBERKE.PRG	works	Little-man platform game: instructions, then playfield with changing objects.
+JATEK/ENTERPRISE-2.PRG	works (repaired 2026-10-15)	Tape-loading screen "do not stop the tape"; stays, waiting for a tape that never comes.
+JATEK/ENTERPRISE.PRG	works	Robi Soft 1988 game intro text with press-a-key prompt; stays.
+JATEK/FALTORO_FOCI.PRG	works	Brick-and-ball football game; intro then moving playfield
+JATEK/FARM.PRG	works	Farm simulation; shows parameters, asks yearly animal sales
+JATEK/FELKARU_BANDITA.PRG	works (120 s run)	Title "PORGETES" stays; no reel animation visible, nothing else changes.
+JATEK/FELKARU_RABLO.PRG	works	One-armed bandit: number prompt re-asks after RETURN.
+JATEK/FOCI.PRG	works	Primo-Foci football: instructions, key-setup menu, then screen change
+JATEK/FOGD_A_PENZT.PRG	works	Hungarian text adventure; parses typed commands, answers "don't understand"
+JATEK/FORDITS.PRG	works (120 s run)	Instruction page stays with "Hany szam legyen?" input prompt; cursor blinks.
+JATEK/FORDULJ!.PRG	works	Dot-field game; counter advances and dots move between shots
+JATEK/FORMA-1_(BOT).PRG	works	Forma-1 racing game; road and cars change between shots
+JATEK/FORMA_1_MR.PRG	works	Forma 1 racing game with track, score and new record
+JATEK/FUTKAROZAS.PRG	works	Catching game; score, lives and timer change between shots
+JATEK/FUTKOSO_II.PRG	works	Futkoso: instructions, then difficulty prompt after RETURN
+JATEK/F_2.PRG	works	Car race: starts on SPACE, then collision result and speed.
+JATEK/GALAXI-2.PRG	works	Asteroids: animated title, then convoy mission and key-menu screen.
+JATEK/GALAXI.PRG	works	Asteroids-style convoy game: intro, instructions, START/VEGE menu
+JATEK/GALAXY.PRG	works	Space shooter: title, then Hungarian instruction pages.
+JATEK/GAMES_1.PRG	works	Games menu: choice prompt re-asks after RETURN.
+JATEK/GOBANG.PRG	works	Gobang five-in-a-row: cursor moves, stones placed on the board.
+JATEK/GOLF.PRG	works	Golf-like court screen redraws between shots
+JATEK/GOMOKO.PRG	works	Gomoku: board size prompt validates input and reprompts
+JATEK/GULA.PRG	works	Guessing game: input prompt, rejects answer with "NAGYON ROSSZ".
+JATEK/HAMMM-2.PRG	works	Joystick and keyboard control menu (J and B options); stays.
+JATEK/HAMMM.PRG	works (repaired 2026-10-15)	Labyrinth game story text with press-a-key prompt; stays.
+JATEK/HANGSZER.PRG	works (120 s run)	Keyboard instrument key-map screen stays, waiting for a key.
+JATEK/HANOI.PRG	works (repaired 2026-10-15)	Tower of Hanoi: asks to read the rules (I/N), waits for a key.
+JATEK/HANOI2.PRG	works	Tower of Hanoi: play/demo question accepts typed input
+JATEK/HARAPAS.PRG	works	Grid board game; player prompt, then board size prompt.
+JATEK/HELIKOPTER.PRG	works	Fire-fighting helicopter game; animated helicopter, scrolling Hungarian text
+JATEK/HOKAPKODO.PRG	works	Snowflake-catching flight game; intro, instructions, counter.
+JATEK/HOSLOVAG.PRG	works	Text adventure; word list appears after answering I
+JATEK/HUNCH_BACK.PRG	works (120 s run)	Hunchback title and instructions stay, "press any key" waiting.
+JATEK/INVASIO_1.PRG	works	Invasion shooter; game-over screen shown after lives lost
+JATEK/INVASIO_2.PRG	works	Space invaders; lives lost, score and new-game prompt appear.
+JATEK/INVAZIO.PRG	works	Space-invaders clone: invaders advance and fire between shots.
+JATEK/JATEKABE.PRG	works	Letter game: rules question, then participant count after a key.
+JATEK/JEGCSAP.PRG	works	Drop-catching skill game; START counter appears after I
+JATEK/JETPAC.PRG	works	Turbo Jack: animated sprites and player-select menu
+JATEK/KALAND-2.PRG	works (120 s run)	Adventure picture with score 25 00 stays; little visible change.
+JATEK/KALAND-3.PRG	works (120 s run)	Truck and door picture with "I LOVE YOU" stays; little visible change.
+JATEK/KALAND-4.PRG	works	Helicopter flyover animation; graphics move between shots.
+JATEK/KALAND-5.PRG	works	Adventure picture; figures and status line change between shots.
+JATEK/KALAND-6.PRG	works (120 s run)	Helicopter and base picture with score 25 00 stays; little visible change.
+JATEK/KALAND-7.PRG	works (120 s run)	Mountain landscape picture stays on screen; no visible change.
+JATEK/KALAND-8.PRG	works (120 s run)	Mountain and figures picture stays on screen; no visible change.
+JATEK/KALAND.PRG	works	Adventure asking rules and picture options; questions advance with keys
+JATEK/KALAND2.PRG	works	Hungarian adventure; asks for info, then room and exits text
+JATEK/KALANDSZ.PRG	works	Kincses Sziget text adventure; menus and prompts change after keys
+JATEK/KARDHALAK-2.PRG	works	Text adventure (sharks and treasures): command prompt answers each input.
+JATEK/KARDHALAK.PRG	works	Text adventure: instruction pages advance on keypress.
+JATEK/KELJFELJANCSI.PRG	works	Jump-and-avoid game; scrolling platforms and moving sprite
+JATEK/KIGYOK-2.PRG	works	Snake game joystick/keyboard menu, stays on screen.
+JATEK/KIGYOK.PRG	works (repaired 2026-10-15)	Snake game instructions text, waits for a key.
+JATEK/KIGYOVM.PRG	works (120 s run)	Snake game instruction screen stays, waiting for a key.
+JATEK/KINCSES-2.PRG	works (120 s run)	Super Adventure 1 title picture by Szarka Zoltan, stays.
+JATEK/KINCSES-3.PRG	works (120 s run)	Treasure text adventure: jungle beach room, waits for input.
+JATEK/KISKUTYA.PRG	works (120 s run)	Rules screen (JATEKSZABALY) with "Nyomj meg egy billentyut!"; waits for a key.
+JATEK/KISMOZDONY.PRG	works (120 s run)	Static intro text with icons at the bottom; waits for a key.
+JATEK/KISZORIT.PRG	works	Two-player snake duel: difficulty prompt, then game and score.
+JATEK/KOCKAZAS.PRG	works	Coordinate prompts x and y advance after input; graphics change.
+JATEK/KOMBINET.PRG	works	Sliding-tile board; asks difficulty 1-20 after drawing.
+JATEK/KOMBINETT.PRG	works	Number-tile sliding puzzle; asks difficulty after SPACE.
+JATEK/KORNYIKA.PRG	works	Music program: waits at ? for typed note codes (by design).
+JATEK/KORTEZO.PRG	works	Instructions, then starfield game starts after SPACE
+JATEK/KOSARLAB.PRG	works (120 s run)	Static question "Kersz tajekoztatot (i - n) ?" waiting for a key.
+JATEK/KRUZGUNY.PRG	works (120 s run)	KRUZGUNY control screen (move, fire, 30 shots, start with I); waits.
+JATEK/LABIRIN2.PRG	works (120 s run)	Own prompt "Nehezsegi szint (1-10)?" with blinking cursor; waits for input.
+JATEK/LABIRIN3.PRG	works	Labyrinth: difficulty prompt accepts 1, then start prompt appears.
+JATEK/LABIRINT.PRG	works	Perspective maze game: instruction pages, then width prompt.
+JATEK/LABIRINTUS.PRG	works	Maze game; animated lines change between shots
+JATEK/LABIRINTUS_2.PRG	works	Maze game: instructions, then maze drawn after a delay
+JATEK/LEGIHARC.PRG	works	Air-battle shooter: info prompt, then instructions with start button.
+JATEK/LEONIDAS.PRG	works	Leonidas story and rules pages advance after key presses
+JATEK/LESIKLAS.PRG	works	Downhill sliding game; screen changes after SPACE
+JATEK/LIFE.PRG	works	Game of Life; asks cell count and responds to keys
+JATEK/LINA.PRG	works (120 s run)	LINA title with Joystick/Billentyuzet choice; static, waits for a key.
+JATEK/LOKOMOTIV.PRG	works (patched)	Locomotive game for the A-32; patched for 64 KB (a32fix). Played to the score screen.
+JATEK/LOVERSENY.PRG	works (repaired 2026-10-15)	Shooting contest name-entry screen, waits for player names.
+JATEK/LUFILOVO.PRG	works	Balloon-shooting NIM game; rules screen, then balloon board.
+JATEK/MACSKA-EGER.PRG	works	Cat-and-mouse maze game: difficulty prompt, then moving sprites
+JATEK/MACSKA.PRG	works	Mouse-and-cat cheese game; screen changes between keys
+JATEK/MANICMIN.PRG	works	Manic Miner; title screen changes to level screen after RETURN.
+JATEK/MANIC_MINER.PRG	works	Manic Miner: title screen, then game level after RETURN.
+JATEK/MANIC_MINER_JAV.PRG	works	Manic Miner: title screen, then game level after RETURN.
+JATEK/MASTERM.PRG	works	Mastermind code game; rules appear after answering I.
+JATEK/MASTERMIND.PRG	works	Mastermind; asks colour and position counts, advances on input
+JATEK/MAYA-2.PRG	works (120 s run)	MAYA logic game board, same as MAYA2-4, stays.
+JATEK/MAYA2-2.PRG	works (120 s run)	MAYA logic game title picture, "Logikai jatek", stays.
+JATEK/MAYA2-4.PRG	works (120 s run)	MAYA logic game board with B and A labels, stays.
+JATEK/MAYA2.PRG	works (120 s run)	Tape-wait message "Hagyd futni a szalagot", stays; no tape present.
+JATEK/MEGOKOLO.PRG	works (120 s run)	Own question "Kerdezz barmit, a gep szivesen megmondja..." with input cursor; waits.
+JATEK/MEMORY.PRG	works	Memory card game; row and column prompts react to keys
+JATEK/MEMORY2.PRG	works	Memory card game; tile pattern changes between shots
+JATEK/MEMORY3.PRG	works	Memory card game: instruction pages, asks difficulty 1-9.
+JATEK/MOO.PRG	works (repaired 2026-10-15)	Bulls-and-cows (MOO) instructions screen, waits for a key.
+JATEK/MUZSIKA.PRG	works	Song menu: program a new song or load one from tape.
+JATEK/NIM.PRG	works	NIM game; rules text advances and asks who starts
+JATEK/NIM2.PRG	works (repaired 2026-10-15)	Nim game asks to read the rules (I/N), waits for a key.
+JATEK/NINJA_A_VARBAN.PRG	works (120 s run)	Game intro with controls and "Szoktesd meg Jancsit" start screen, waiting for SPACE.
+JATEK/ORDOGMOTOROS.PRG	works	Motorbike forest game; instructions, then scrolling scene and score.
+JATEK/OSTROM.PRG	works	Arcade game; score and moving objects change between shots.
+JATEK/OSZKAR_A_LOVAG.PRG	works	Oszkar the knight game; instruction pages advance per key press.
+JATEK/OTHELLO.PRG	works	Othello: pages instructions, then asks whether to play
+JATEK/PANIK-2.PRG	works	Panik game joystick/keyboard menu, stays on screen.
+JATEK/PANIK.PRG	works (repaired 2026-10-15)	Panik game instructions text, waits for a key.
+JATEK/PARBAJ.PRG	works (120 s run)	Joystick/Billentyuzet menu, static, waits for a choice.
+JATEK/PCMAN.PRG	works (120 s run)	Static control menu (J joystick, B keyboard), waiting for a key press.
+JATEK/PIANO.PRG	works (120 s run)	Static PIANO screen with keyboard diagram; waits for keys, nothing moves.
+JATEK/POCKET-MAN.PRG	works	Labirintus maze game; sprites move between shots
+JATEK/POK-INVAZIO.PRG	works (120 s run)	Static Hungarian instruction text ending with press S to start; waits for key.
+JATEK/POKER.PRG	works	Poker game: bet, cards and bank change per key
+JATEK/POTTY.PRG	works	Falling-block puzzle: pieces and score change with keys.
+JATEK/PRIMOURH.PRG	works	Spaceship game; moving asteroid field and best-score line.
+JATEK/REAKTOR.PRG	works	Reactor game: asks if to play, then if rules known
+JATEK/REAKTOR1.PRG	works	Reactor simulation; prompts change and advance after each input
+JATEK/REFLEX-JATEKOK.PRG	works	Reflex games menu; after keys shows "start the tape" message.
+JATEK/REFLEX.PRG	works (repaired 2026-10-15)	Reflex test "1. proba" with counters and graphics changing over time.
+JATEK/RONCSDER.PRG	works	Wreck derby betting game; takes bet, asks which car.
+JATEK/ROTARY.PRG	works	Peg-and-disc puzzle: board updates and asks where to move.
+JATEK/ROULETTE.PRG	works (120 s run)	Roulette table screen asking "Kered a szabalyokat? (I/N)"; stays waiting.
+JATEK/RULETT.PRG	works	Roulette; intro changes to betting table after a key.
+JATEK/RULETT_II.PRG	works	Roulette; new message appears after RETURN at prompt
+JATEK/SAJTVAJO.PRG	works	Menu, then maze game screens with score changing.
+JATEK/SAKK.PRG	works (120 s run)	Static chess title banner with checkerboard strip; nothing changes.
+JATEK/SAKKMENT.PRG	works	Chess program; a key shows "saving" text, unchanged after.
+JATEK/SAKK_III.PRG	works (repaired 2026-10-15)	Chess automaton instructions screen, stays until a key is pressed.
+JATEK/SATIROZAS.PRG	works	SATIR dot game; points, lives and timer change between shots
+JATEK/SCILFUL.PRG	works (120 s run)	Static Hungarian title and prompt Remelem keszen allsz a jatekra; waits.
+JATEK/SI-CSEL.PRG	works	Hungarian arcade game; key starts it, lives count down.
+JATEK/SICSEL.PRG	works	Sicsel game: key starts play; playfield objects and counters change
+JATEK/SIELO.PRG	works	Ski slalom game: instructions and moving course graphics
+JATEK/SKRAMBLE_DAYMON.PRG	works (120 s run)	DAYMON title and control table; static, waits for START: SPACE.
+JATEK/SPACE_SHUTTLE.PRG	works	Space shuttle landing: instructions, then animated orbit graphics
+JATEK/SPRINT.PRG	works	Labyrinth game; maze-size prompt appears after start key.
+JATEK/SUNI.PRG	works	Hedgehog pear-catching game; falling items and error counter change.
+JATEK/SZAMCSATA.PRG	works	Robi Soft game setup; question changes after I
+JATEK/SZAMCSATA_2.PRG	works	Number game; rules screen, then accepts target number input
+JATEK/SZAMOK_INVAZIOJA.PRG	works	Number-shooting game; score, rounds and game-over prompt change.
+JATEK/SZARVASB.PRG	works	Beetle game title; SPACE shows 'press S to start' message
+JATEK/SZELLEMEK.PRG	works	Ghost-cleaning game; score rises across screens.
+JATEK/SZELLEMVADASZ.PRG	works	Ghost-hunter maze game: menu, then moving gameplay screens.
+JATEK/SZERPEN.PRG	works	Hungarian star-collecting maze game; sprites move between shots.
+JATEK/SZLALOM.PRG	works (120 s run)	Static SZLALOM instructions with prompt to press a key; waits.
+JATEK/TALTOS.PRG	works	Horse dodging cacti game; score and lives update.
+JATEK/TANKCSAT.PRG	works	Two-player tank battle; rules text appears after a key
+JATEK/TARGET.PRG	works	Shooting game; target arrows move between shots, SPACE fires
+JATEK/TEKE.PRG	works	Ball-rolling game; instructions page appears after loading message.
+JATEK/TENGERI_KIGYO.PRG	works	Sea snake maze game: reach top-right corner, board and new-game prompt appear.
+JATEK/TENISZ.PRG	works	Asks speed and gate size 1-8, then next prompt.
+JATEK/TENISZ2.PRG	works	Tennis game: height prompt, instructions, then start prompt
+JATEK/TENISZ_2.PRG	works	Tennis game; score and ball change between shots.
+JATEK/TEVEFOCI.PRG	works	Table football: name prompts, control text, advances on RETURN
+JATEK/TORPEDO.PRG	works (120 s run)	Title with animated waves and ships; copyright text alternates with press-key prompt.
+JATEK/TORPEDO_2.PRG	works (120 s run)	Title with animated waves and ships; copyright text alternates with press-key prompt.
+JATEK/TURBO.PRG	works	Turbo Jack: Hungarian menu, then moving sprite game screen
+JATEK/TUZOLTO.PRG	works	Fire-fighter game; animated figures move after loading message.
+JATEK/TVFOCI.PRG	works (120 s run)	Football title and category question (1..5) waiting for input; static.
+JATEK/UFO.PRG	works	UFO game title; instructions prompt appears after a key.
+JATEK/UFOB.PRG	works	Flying shooter: lives and aliens; screen changes with keys
+JATEK/ULDOZES.PRG	works	Radar shooter: instructions, then difficulty prompt accepts keys
+JATEK/ULDOZES2.PRG	works	Police chase game: questions advance to the siren prompt.
+JATEK/URHAJOV.PRG	works	Spaceship game: instructions, then difficulty prompt after keys.
+JATEK/URVADASZ.PRG	works (120 s run)	Static Hungarian instructions and controls; prompt INDITAS: I waits.
+JATEK/VEBA.PRG	works	Asks printout, then bit sequence; reacts to input
+JATEK/VEDELEM.PRG	works	Defence shooter; asks attacker count after keypress.
+JATEK/VILI_A_BANYASZ.PRG	works	Vili the miner platform game; animated scene, garbled text.
+JATEK/VONALV.PRG	works (120 s run)	VONALVADASZ2 title with menu T, E, J; static, waits for a key.
+JATEK/ZONGORA.PRG	works	Piano game: Mozart prompt, then "Most te jossz" after keys.
+UJDONSAGOK/8KIRALYNO.PRG	works	Eight queens: successive solutions shown, counter increases
+UJDONSAGOK/COUNTTHEMUTANTS.PRG	works	Counting game: title, then alien grid and count prompt respond.
+UJDONSAGOK/KILDU-2.PRG	works (120 s run)	Static title picture of houses and trees with garbled top line; nothing moves.
+UJDONSAGOK/KILDU.PRG	works (120 s run)	Static KILDU title picture with subtitle; stays, waits for input.
+UJDONSAGOK/OTODOLO64_COLOR.PRG	works	Countdown animation with moving dots and portrait photo.
+UJDONSAGOK/OTODOLO64_MONOCH.PRG	works	WASD grid game with countdown timer and moving cursor
+UJDONSAGOK/PRIHISTORY.PRG	works without CDOS only - test with our DOS	Fake C64 start-up messages, then PRIMAL graphics; scenes change over time.
+UJDONSAGOK/PRIMO-DEMO.PRG	works (fixed, matches the original tape)	Fast&Force 2024 demo: logo, scroller, music (autostart fixed 2026-10-15)
+UJDONSAGOK/PRIMO-KEPKIRAKO.PRG	works (fixed, matches the original tape)	Full-screen picture puzzle (autostart fixed 2026-10-15)
+UJDONSAGOK/PRIMO40.PRG	works (120 s run)	PRIMO 40 title screen with machine picture; stays unchanged.
+UJDONSAGOK/PRIMOPATT.PRG	works	Primo jump game; scores and jumps change over shots
+UJDONSAGOK/RAKTAROS.PRG	works	Sokoban-style warehouse puzzle; level appears after SPACE
+UJDONSAGOK/RT.PRG	works (slow)	BASIC ray tracer; draws for hours (floor and spheres after 60 emulated minutes).
+UJDONSAGOK/STANDING_WAVE.PRG	works (fixed, matches the original tape)	Beeper music with title screen (autostart fixed 2026-10-15)
+UJDONSAGOK/TEKNOSBEKA.PRG	works	Turtle board game; key 1 starts play, board appears
+UJDONSAGOK/THECHOSEN.PRG	works without CDOS only - test with our DOS	Demo prints joke "ERROR!" text, then animated scene with changing speech bubbles.
+UJDONSAGOK/TIEVADASZ_B64.PRG	works (120 s run)	TIE VADASZ title with credits and spaceship graphics; stays on screen.

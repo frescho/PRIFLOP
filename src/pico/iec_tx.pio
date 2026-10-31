@@ -1,0 +1,177 @@
+;
+; sd2iec - SD/MMC to Commodore serial bus interface/controller
+; Copyright (C) 2007-2017  Ingo Korb <ingo@akana.de>
+; Copyright (C) 2026  sd2iec_pico2w contributors
+;
+; RP2350 / Raspberry Pi Pico 2 W port by frescho.
+; This file was written for that port.
+;
+; This program is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; version 2 of the License only.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; ---------------------------------------------------------------------------
+;
+; iec_tx: send the eight data bits of one IEC byte.
+;
+; WHAT THIS REPLACES. The bit loop of _iec_putc() in src/iec.c:
+;
+;     for (i = 0; i < 8; i++) {
+;       if (!(iec_debounced() & IEC_BIT_DATA)) { ... return -1; }  ; listener gone
+;       delay_us(45);
+;       set_data(data & 1<<i);
+;       delay_us(22);
+;       set_clock(1);
+;       delay_us(75);          ; 34 in VC20 mode -- see VC20 note below
+;       set_clock(0);
+;       delay_us(22);
+;       set_data(1);
+;       delay_us(14);
+;     }
+;
+; 178 us per bit, 1424 us per byte, and every microsecond of it is the CPU
+; sitting in a busy-wait. Receive at least spends its time waiting for the
+; C64; this is time spent waiting for nothing at all. It is the single
+; largest block of core 0 the bus consumes.
+;
+; ---------------------------------------------------------------------------
+; TWO THINGS THAT SHAPE THIS PROGRAM
+;
+; 1. CLOCK AND DATA ARE NOT ADJACENT. CLOCK is GPIO3, DATA is GPIO6, and
+;    PIO's `set`/`out` write to contiguous pin windows from a base. A
+;    single window covering both would also cover GPIO4 and GPIO5 and drive
+;    them, which is not acceptable on pins this program has no business
+;    touching.
+;
+;    The way out is that SET and OUT have SEPARATE bases. So:
+;        SET base -> CLOCK   (`set pindirs, N` drives CLOCK)
+;        OUT base -> DATA    (`out pindirs, 1` drives DATA from the OSR)
+;    Nothing else is touched.
+;
+; 2. `set x, N` TAKES ONLY 0..31, AND THE DELAYS ARE 45/22/75/22/14 us.
+;    Each delay is therefore a countdown loop with a delay slot, chosen so
+;    iterations x cycles-per-iteration lands exactly on the microsecond
+;    count (the state machine is clocked at 1 us per cycle):
+;
+;        45 us -> set x,8  ; jmp x--,l [4]   9 x 5 = 45
+;        22 us -> set x,10 ; jmp x--,l [1]  11 x 2 = 22
+;        75 us -> set x,14 ; jmp x--,l [4]  15 x 5 = 75
+;        14 us -> set x,6  ; jmp x--,l [1]   7 x 2 = 14
+;
+; ---------------------------------------------------------------------------
+; LINE POLARITY. The IEC lines are open-drain, emulated by flipping
+; direction (arch-config.h's set_data()/set_clock()): pindir INPUT releases
+; the line and the pull-up takes it high; pindir OUTPUT drives it low. So a
+; data bit of 1 means pindir 0, and a data bit of 0 means pindir 1 -- the
+; pindir value is the INVERSE of the data bit, so whatever feeds this
+; program must push the INVERTED byte.
+;
+; SIXTEEN BITS PER BYTE. Each bit period drives DATA twice: once with the
+; bit, once to release it again (`set_data(1)` at the end of the loop
+; body). SET is spoken for by CLOCK, so both writes come from OUT, and the
+; word pushed is sixteen bits -- inverted data bit, then a 0 to release,
+; eight times over. Shift-right, so the LSB goes first, which is the order
+; the bus wants.
+;
+; ABORT. `jmp pin` (EXECCTRL_JMP_PIN = DATA) tests DATA at the top of every
+; bit, exactly where the C loop tests it. A listener that has dropped DATA
+; has gone away mid-byte; the program raises IRQ 4 and stops, and the C
+; side turns that into the BUS_CLEANUP it already does today.
+;
+; DONE. IRQ 5 when all eight bits are out, so the C side knows to pick the
+; handshake back up without having to infer it from FIFO state.
+;
+; IRQ FLAGS 4 AND 5, not 0 and 1. Flags 0-3 can be routed to the CPU as
+; real interrupts, and this program may well be sharing a PIO block with
+; cyw43's SPI state machine -- the block is claimed dynamically, so which
+; one is not knowable in advance. 4-7 are internal-only and cannot collide
+; with anything cyw43 asserts.
+;
+; VC20 MODE IS NOT HANDLED. `globalflags & VC20MODE` shortens the third
+; delay from 75 us to 34 us. Rather than branch on it inside the program,
+; the intent is that the C side declines PIO transmit when that flag is set
+; and keeps the software loop. VC20 mode is rare, and a second timing
+; variant is not worth the instructions or the second untested path.
+;
+
+.program iec_tx
+
+.wrap_target
+start:
+    pull block                  ; 16 bits: (inverted data bit, 0) x8
+    set  y, 7                   ; eight bits to send
+
+bitloop:
+    jmp  pin, bit_ok            ; DATA released -> listener still there
+    irq  nowait 4               ; DATA low mid-byte -> listener has gone
+    jmp  start
+
+bit_ok:
+    set  x, 8                   ; 45 us before driving the bit
+d45:
+    jmp  x--, d45           [4]
+
+    out  pindirs, 1             ; drive DATA with this bit (inverted)
+
+    set  x, 10                  ; 22 us set-up before CLOCK is released
+d22a:
+    jmp  x--, d22a          [1]
+
+    set  pindirs, 0             ; release CLOCK -> this bit is valid
+
+    set  x, 14                  ; 75 us valid window (T_V, note 4: >= 60 us)
+d75:
+    jmp  x--, d75           [4]
+
+    set  pindirs, 1             ; pull CLOCK low again
+
+    set  x, 10                  ; 22 us before releasing DATA
+d22b:
+    jmp  x--, d22b          [1]
+
+    out  pindirs, 1             ; release DATA (the 0 half of the pair)
+
+    set  x, 6                   ; 14 us settle
+d14:
+    jmp  x--, d14           [1]
+
+    jmp  y--, bitloop           ; next bit
+
+    irq  nowait 5               ; byte complete
+.wrap
+
+% c-sdk {
+#include "hardware/clocks.h"
+
+/* Configure a state machine for iec_tx.
+ *
+ * Clocked at exactly 1 us per cycle, which is what makes the delay loops
+ * above readable as microseconds. Derived from the live system clock
+ * rather than assuming 150 MHz, so this keeps working if the clock is
+ * ever changed -- getting that wrong would not fail loudly, it would
+ * quietly violate T_V and produce a drive that works with some machines
+ * and not others.
+ */
+static inline void iec_tx_program_init(PIO pio, uint sm, uint offset,
+                                       uint clock_pin, uint data_pin) {
+    pio_sm_config c = iec_tx_program_get_default_config(offset);
+
+    sm_config_set_set_pins(&c, clock_pin, 1);   /* `set pindirs` -> CLOCK */
+    sm_config_set_out_pins(&c, data_pin, 1);    /* `out pindirs` -> DATA  */
+    sm_config_set_jmp_pin(&c, data_pin);        /* `jmp pin`     -> DATA  */
+
+    /* OSR: shift right (LSB first), no autopull -- the program pulls one
+       16-bit word per byte explicitly, which keeps byte framing obvious. */
+    sm_config_set_out_shift(&c, true, false, 32);
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_TX);
+
+    sm_config_set_clkdiv(&c, (float)clock_get_hz(clk_sys) / 1000000.0f);
+
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}

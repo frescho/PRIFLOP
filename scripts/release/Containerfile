@@ -1,0 +1,33 @@
+# The build environment of docs/user/BUILDING.md, steps 1, 2, 4, 5 and 7:
+# Ubuntu 26.04, the Pico SDK 2.1.1, picotool 2.1.1 and z88dk's z80asm at the
+# commit this project uses. scripts/build-release.sh builds it and runs
+# build-in-container.sh in it.
+FROM docker.io/library/ubuntu:26.04
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates git build-essential cmake ninja-build perl python3 zip \
+        gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV CMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    CXXFLAGS="-include cstdint" \
+    PICO_SDK_PATH=/opt/pico-sdk \
+    picotool_DIR=/opt/picotool/picotool \
+    LC_ALL=C.UTF-8
+
+RUN git clone --depth 1 --branch 2.1.1 --recurse-submodules --shallow-submodules \
+        https://github.com/raspberrypi/pico-sdk.git /opt/pico-sdk
+
+RUN git clone --depth 1 --branch 2.1.1 https://github.com/raspberrypi/picotool.git /opt/picotool-src \
+    && cmake -S /opt/picotool-src -B /opt/picotool-build -G Ninja \
+        -DPICO_SDK_PATH=$PICO_SDK_PATH -DPICOTOOL_NO_LIBUSB=1 \
+        -DPICOTOOL_FLAT_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/opt/picotool \
+    && cmake --build /opt/picotool-build --target install \
+    && rm -rf /opt/picotool-build
+
+RUN git clone --filter=blob:none --no-checkout https://github.com/z88dk/z88dk.git /opt/z88dk \
+    && cd /opt/z88dk && git checkout 0a73a0209e \
+    && git submodule update --init --depth 1 ext/uthash ext/optparse ext/regex \
+    && make src/config.h && make -C src/z80asm -j"$(nproc)" \
+    && install -m 755 src/z80asm/z88dk-z80asm /usr/local/bin/ \
+    && rm -rf /opt/z88dk

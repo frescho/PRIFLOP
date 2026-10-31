@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400" viewBox="0 0 640 400" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <title>6-pin DIN plug, solder side: which wire goes where</title>
+  <rect width="640" height="400" fill="#ffffff"/>
+
+  <!-- connector, solder side of the plug = front of the computer's socket -->
+  <circle cx="200" cy="200" r="140" fill="#f4f4f4" stroke="#000" stroke-width="3"/>
+  <rect x="184" y="56" width="32" height="34" fill="#ffffff" stroke="#000" stroke-width="2"/>
+  <text x="200" y="45" text-anchor="middle" font-size="12">notch</text>
+
+  <!-- pins: 1 at 60 deg, 2 at 120, 3 at 180, 4 at 240, 5 at 300 (clockwise from the notch), 6 centre; radius 85 -->
+  <g stroke="#000" stroke-width="2">
+    <circle cx="274" cy="158" r="13" fill="#9ecbff"/>
+    <circle cx="274" cy="243" r="13" fill="#cccccc"/>
+    <circle cx="200" cy="285" r="13" fill="#ffb3b3"/>
+    <circle cx="126" cy="243" r="13" fill="#ffe08a"/>
+    <circle cx="126" cy="158" r="13" fill="#b3e6b3"/>
+    <circle cx="200" cy="200" r="13" fill="#ffffff" stroke-dasharray="3 3"/>
+  </g>
+  <g font-weight="bold" text-anchor="middle" font-size="14">
+    <text x="274" y="163">1</text>
+    <text x="274" y="248">2</text>
+    <text x="200" y="290">3</text>
+    <text x="126" y="248">4</text>
+    <text x="126" y="163">5</text>
+    <text x="200" y="205">6</text>
+  </g>
+
+  <!-- legend -->
+  <g font-size="14">
+    <circle cx="400" cy="95" r="9" fill="#ffb3b3" stroke="#000"/><text x="418" y="100">3  ATN  → GP2 via 100 Ω</text>
+    <circle cx="400" cy="130" r="9" fill="#ffe08a" stroke="#000"/><text x="418" y="135">4  CLOCK → GP3 via 100 Ω</text>
+    <circle cx="400" cy="165" r="9" fill="#b3e6b3" stroke="#000"/><text x="418" y="170">5  DATA → GP6 via 100 Ω</text>
+    <circle cx="400" cy="200" r="9" fill="#9ecbff" stroke="#000"/><text x="418" y="205">1  SRQ  → GP7 via 100 Ω</text>
+    <circle cx="400" cy="235" r="9" fill="#cccccc" stroke="#000"/><text x="418" y="240">2  GND  → GND</text>
+    <circle cx="400" cy="270" r="9" fill="#ffffff" stroke="#000" stroke-dasharray="3 3"/><text x="418" y="275">6  RESET: leave free</text>
+  </g>
+
+  <text x="20" y="372" font-size="12" fill="#333">Seen from the solder side of the drive's plug, notch up. This is also the front of the socket on the computer</text>
+  <text x="20" y="390" font-size="12" fill="#333">or on the Primo's serial cable. Seen from the pin side of the plug, the picture is mirrored.</text>
+</svg>

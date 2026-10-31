@@ -1,0 +1,88 @@
+;
+; sd2iec - SD/MMC to Commodore serial bus interface/controller
+; Copyright (C) 2007-2017  Ingo Korb <ingo@akana.de>
+; Copyright (C) 2026  sd2iec_pico2w contributors
+;
+; RP2350 / Raspberry Pi Pico 2 W port by frescho.
+; This file was written for that port.
+;
+; This program is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; version 2 of the License only.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; ---------------------------------------------------------------------------
+;
+; primo_turbo: the drive's half of the Primo turbo.
+;
+; Run by src/pico/primo_turbo.c, and by the co-simulation
+; (tests/primo_turbo_sim.py, through tests/pio_model.py) against the Primo's
+; real Z80 code.
+;
+; THE PRIMO SETS THE PACE. It flips CLOCK; on every flip, either direction,
+; this program does three things in a few cycles:
+;
+;   1. samples DATA (`in pins, 1`, autopush at 1 bit: one RX word per edge),
+;      which is how the drive reads a bit the Primo sends, or its ACK/NAK;
+;   2. takes the next command word from the TX FIFO and drives DATA from its
+;      bit 0 (1 = pull DATA low, 0 = release it);
+;   3. if the word's bit 1 ("hold") is set, blocks on the TX FIFO for one
+;      more word and drives DATA from it the moment it arrives -- without
+;      waiting for an edge. That is how the drive says "ready" (pull DATA)
+;      after work that takes as long as it takes: reading the file, checking
+;      a frame, writing flash. The Primo polls DATA meanwhile.
+;
+; Nothing here is timed against the Primo. The CPU (through DMA) supplies a
+; word for every edge; it decides what comes next only at a hold.
+;
+; PINS. `in pins` and `out pindirs` both use DATA as their base (one pin);
+; DATA's output level is preset low, so pindir 1 = pulled, 0 = released --
+; open collector, as on the real bus. CLOCK is reached through absolute
+; `wait ... gpio 3` (IEC_PIN_CLOCK); the drive never drives CLOCK here.
+; ATN is not touched: the IRQ path keeps serving it, and the CPU drops turbo
+; when ATN falls.
+;
+; Shift right, autopull off (explicit `pull block`), 2-bit command words.
+
+.program primo_turbo
+.wrap_target
+top:
+    wait 0 gpio 3          ; edge: the Primo pulled CLOCK
+    in pins, 1             ; DATA as the Primo left it
+    pull block
+    out pindirs, 1         ; this edge's bit
+    out y, 1               ; hold?
+    jmp !y released
+    pull block             ; hold: wait for the CPU ...
+    out pindirs, 1         ; ... and drive its word at once
+public released:
+    wait 1 gpio 3          ; edge: the Primo released CLOCK
+    in pins, 1
+    pull block
+    out pindirs, 1
+    out y, 1
+    jmp !y top
+    pull block
+    out pindirs, 1
+.wrap
+
+% c-sdk {
+/* Configure a state machine for primo_turbo. Full system clock: it only
+   waits for edges and reacts, so faster is simply a smaller delay. DATA is
+   the one pin it drives (pindirs, output level preset low) and samples;
+   CLOCK is reached by the absolute `wait gpio 3` above, which must match
+   IEC_PIN_CLOCK (primo_turbo.c checks it at build time). */
+static inline void primo_turbo_program_init(PIO pio, uint sm, uint offset, uint data_pin) {
+    pio_sm_config c = primo_turbo_program_get_default_config(offset);
+    sm_config_set_in_pins(&c, data_pin);
+    sm_config_set_out_pins(&c, data_pin, 1);
+    sm_config_set_in_shift(&c, true, true, 1);      /* one sample per RX word, in bit 31 */
+    sm_config_set_out_shift(&c, true, false, 32);   /* explicit `pull block` per word */
+    sm_config_set_clkdiv(&c, 1.0f);
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}

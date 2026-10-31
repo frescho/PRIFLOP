@@ -1,0 +1,130 @@
+;
+; sd2iec - SD/MMC to Commodore serial bus interface/controller
+; Copyright (C) 2007-2017  Ingo Korb <ingo@akana.de>
+; Copyright (C) 2026  sd2iec_pico2w contributors
+;
+; RP2350 / Raspberry Pi Pico 2 W port by frescho.
+; This file was written for that port.
+;
+; This program is free software; you can redistribute it and/or modify
+; it under the terms of the GNU General Public License as published by
+; the Free Software Foundation; version 2 of the License only.
+;
+; This program is distributed in the hope that it will be useful,
+; but WITHOUT ANY WARRANTY; without even the implied warranty of
+; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+; GNU General Public License for more details.
+;
+; ---------------------------------------------------------------------------
+;
+; iec_rx: sample one IEC data byte.
+;
+; WHAT THIS REPLACES. The inner loop of _iec_getc() in src/iec.c:
+;
+;     for (i = 0; i < 8; i++) {
+;       do { tmp = iec_bus_read(); } while (!(tmp & IEC_BIT_CLOCK));
+;       val = (val >> 1) | (!!(tmp & IEC_BIT_DATA) << 7);
+;       do { ... } while (iec_debounced() & IEC_BIT_CLOCK);
+;     }
+;
+; Wait for CLOCK to go high (the talker saying "this bit is valid"), sample
+; DATA, wait for CLOCK to fall, repeat eight times. Least significant bit
+; first, which is what the bus does and what the C code's `val >> 1`
+; assembles.
+;
+; WHY ONLY THE DATA BYTES. _iec_getc()'s loop has a special case on bit 7
+; for JiffyDOS detection, and that case is guarded by
+; `bus_state == BUS_ATNACTIVE` -- it only applies to command bytes sent
+; under ATN, never to the data bytes that make up the bulk of a transfer.
+; It also needs the half-received byte compared against the device address,
+; which is not something to attempt in a 32-instruction program. So command
+; bytes stay on the software path, where they already work, and this handles
+; the case that is both uniform and 99% of the traffic.
+;
+; PIN NUMBERING. `wait ... gpio N` takes an ABSOLUTE gpio number, which is
+; what makes this work at all: CLOCK is GPIO3 and DATA is GPIO6, three apart,
+; so they cannot both sit in one small `in` window. DATA is reached through
+; the state machine's IN base (set to IEC_PIN_DATA by iec_pio_init), CLOCK
+; through absolute-addressed waits.
+;
+; SHIFT DIRECTION. Configured shift-right with an autopush threshold of 8.
+; Each `in` puts the new bit at ISR bit 31 and shifts right, so after eight
+; bits the byte occupies ISR[31:24] with the first-received bit -- the LSB,
+; per the bus -- at bit 24. The C side therefore reads `fifo_word >> 24`.
+;
+; CONFIRMED EDGES (2026-10-02). Each CLOCK edge counts only if CLOCK is still
+; at its new level about 1.7 us later; otherwise it was a spike and the program
+; goes back to waiting for the same edge. Until then any edge counted, however
+; short -- at the full system clock, a pulse of a few nanoseconds -- and one
+; spike clocked in an extra bit, completed the byte early and left the drive
+; acknowledging in the middle of the talker's next one. On 2026-10-01 that is
+; what a ground loop on the test bench did: every IECTEST with PIO receive
+; lost lines, while the software path -- which only believes CLOCK low after
+; two reads 2 us apart agree -- passed. The software path still
+; takes CLOCK high from a single read; this program is now stricter than that.
+;
+; The window costs nothing the bus can see: a bit is set up for at least 20 us
+; (T_S) and valid for at least 20 us (T_V), so DATA is sampled 1.7 us into a
+; window of 20, and the next edge is never closer than 20 us. A pulse longer
+; than the window is taken as an edge -- no decoder that has to accept 20 us
+; bits can tell a 4 us pulse from a bit. tests/iec_rx_test.py runs this file
+; through a model of the PIO (tests/pio_model.py) with spikes and edge ringing,
+; and the original program through the same, which fails them.
+;
+; TIMING. The state machine runs at sys/8 (150 MHz -> 18.75 MHz, 53 ns a
+; cycle), so a [31] delay after a `wait` is 32 cycles = 1.7 us. `jmp pin`
+; looks at CLOCK (jmp pin = IEC_PIN_CLOCK, absolute like the waits).
+;
+; This program does NOT drive any line. Acknowledging the byte (DATA low,
+; within T_F = 1000us) stays with the CPU, as does the EOI timeout and the
+; ATN abort. Those are byte-level decisions.
+;
+
+.program iec_rx
+
+.wrap_target
+rise:
+    wait 1 gpio 3  [31] ; CLOCK released -> maybe "this bit is valid"; 1.7 us on,
+    jmp  pin sample     ; still released: a real edge
+    jmp  rise           ; low again: it was a spike, keep waiting
+sample:
+    in   pins, 1        ; sample DATA (IN base = IEC_PIN_DATA)
+fall:
+    wait 0 gpio 3  [31] ; CLOCK pulled low -> maybe "bit consumed"; 1.7 us on,
+    jmp  pin fall       ; released again: a spike, still the same bit
+.wrap                   ; still low: a real edge, wait for the next bit
+
+% c-sdk {
+#include "hardware/clocks.h"
+
+/* Configure a state machine for iec_rx.
+ *
+ * The clock divider sets the confirmation window: [31] after a wait is 32
+ * state-machine cycles, 1.7 us at sys/8 with a 150 MHz system clock (see
+ * TIMING above). It is a constant, not derived from clk_sys, because the
+ * window only has to be "well over a spike, well under 20 us": at a 300 MHz
+ * system clock it would be 0.85 us, still both. tests/iec_rx_test.py reads
+ * the 8 from this line.
+ */
+static inline void iec_rx_program_init(PIO pio, uint sm, uint offset,
+                                       uint data_pin, uint clock_pin) {
+    pio_sm_config c = iec_rx_program_get_default_config(offset);
+
+    sm_config_set_clkdiv(&c, 8.0f);
+    sm_config_set_jmp_pin(&c, clock_pin);       /* `jmp pin` -> CLOCK */
+    sm_config_set_in_pins(&c, data_pin);
+    /* shift right, autopush, threshold 8 -- see SHIFT DIRECTION above */
+    sm_config_set_in_shift(&c, true, true, 8);
+    /* RX only: give the whole FIFO to the receive side. */
+    sm_config_set_fifo_join(&c, PIO_FIFO_JOIN_RX);
+
+    /* DATA is an input to this program and must stay one. The IEC lines are
+       open-drain emulated by flipping direction (see arch-config.h's
+       set_data()), and the CPU owns that flip -- if PIO also drove the pin
+       the two would fight over the acknowledge. Claiming the pin for PIO
+       input only is deliberate. */
+    pio_sm_set_consecutive_pindirs(pio, sm, data_pin, 1, false);
+
+    pio_sm_init(pio, sm, offset, &c);
+}
+%}
