@@ -33,15 +33,7 @@ The drive uses four GPIO pins, each through a 100 Ω resistor:
 *The board this project was built and tested on: the resistors are soldered
 straight onto the Pico's pads, and the wires go to the DIN plug.*
 
-![The DIN plug from the solder side](images/din-plug.svg)
-
-*The plug's pins from the solder side, notch up. The numbers are not in
-order around the ring: pin 6 is in the centre, and 1 to 5 run from upper
-right, clockwise, to upper left. The pin side is the mirror image.* Pin
-positions from Wikipedia's [Commodore bus][cbmbus] diagram, which shows the
-computer's socket from the front: the same view as the plug's solder side.
-
-DIN pin 6 is RESET; the drive does not use it.
+How the plug connects to each computer: [Connecting a computer](#connecting-a-computer).
 
 The bus is **open collector**: every device only ever pulls a line low, and
 pull-up resistors to 5 V make it high. The firmware does the same: it switches
@@ -111,7 +103,32 @@ computer you use to watch the C64's screen: a capture card and the drive on
 the same PC share ground twice, and that ground loop corrupts data silently
 (see [troubleshooting](SOFTWARE.md#troubleshooting)).
 
-## The Primo
+## Connecting a computer
+
+The drive's plug is the Commodore serial bus's 6-pin DIN plug. A C64 takes
+it directly; a Primo takes it through an adapter cable, or the Pico can be
+wired to a Primo plug directly.
+
+| | C64 | Primo |
+|---|---|---|
+| Socket on the computer | 6-pin DIN, serial bus | 5-pin DIN, serial port |
+| Connection | the drive's plug, directly | adapter cable, or the Pico wired to a 5-pin plug |
+| ATN / CLOCK / DATA / GND | pins 3 / 4 / 5 / 2 | pins 2 / 5 / 3 / 4 |
+| Drawing | [below](#c64) | [below](#primo) |
+
+### C64
+
+![C64: the drive's 6-pin DIN plug from the solder side](images/din-plug.svg)
+
+*The plug's pins from the solder side, notch up. The numbers are not in
+order around the ring: pin 6 is in the centre, and 1 to 5 run from upper
+right, clockwise, to upper left. The pin side is the mirror image.* Pin
+positions from Wikipedia's [Commodore bus][cbmbus] diagram, which shows the
+computer's socket from the front: the same view as the plug's solder side.
+
+DIN pin 6 is RESET; the drive does not use it.
+
+### Primo
 
 The Primo's serial port is the same bus, on a 5-pin DIN socket. A
 Primo-to-Commodore cable (the one a Primo uses for a 1541) connects it to the
@@ -128,7 +145,7 @@ drive's 6-pin plug:
 
 Source: the cable table in the FDU-1109 manual, appendix D.
 
-### The adapter cable
+#### The adapter cable
 
 ![FDU-1109 drawing 1109-06: the Primo–Commodore serial bus cable](images/fdu1109-cable.jpg)
 
@@ -140,7 +157,7 @@ Both plugs are drawn from the solder side ("forrasztási oldalról nézve"):
 the 5-pin DIN plug (DKAS05) for the Primo, the 6-pin one (DKAN06) for the
 drive. Reproduced unchanged; it belongs to its authors.*
 
-### Wiring the Pico straight to the Primo
+#### Wiring the Pico straight to the Primo
 
 The adapter cable is not needed: the Pico's wires can go to a 5-pin DIN plug
 directly, with the same four resistors. *Not tested yet: the drive was

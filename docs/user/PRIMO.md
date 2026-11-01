@@ -13,7 +13,7 @@ detail.
 
 - **The serial port.**
   - **B series:** built in. You only need the cable (see
-    [Hardware](HARDWARE.md#the-primo)).
+    [Hardware](HARDWARE.md#primo)).
   - **A series:** solder in the missing DIN socket, ICs and resistors. They
     are in the Primo hardware manual, "optional Commodore serial interface",
     pages 76–78.
