@@ -22,12 +22,20 @@ What you need:
    `python3 deploy.py --ip 192.168.4.1`
    This uploads the boot file and PFM. The boot file's name is one raw
    byte, so the web page cannot upload it; use `deploy.py`.
-4. **Connect.** Power the drive first, then plug the cable into the Primo's
+4. **Optional: Primo programs.** Ready-made packages from the Primo's
+   program library are in `release/primo_software/`. The small one, 307
+   programs, fits the drive:
+   `python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip`
+   It makes the folders on the drive and puts each program in its folder.
+   Use `--dry-run` first to see what it would do. The two larger packages
+   need a 16 MB board. Sizes, how they were made and the terms of use:
+   [Primo software packages](PRIMO-SOFTWARE.md).
+5. **Connect.** Power the drive first, then plug the cable into the Primo's
    serial port.
-5. **Reset the Primo while holding BRK.** Keep BRK held down, press reset,
+6. **Reset the Primo while holding BRK.** Keep BRK held down, press reset,
    and let go of BRK after the reset. The boot file loads and installs our
    DOS. The banner says `turbo` when the fast load is on.
-6. **Load.** `CMD LOAD` with no name opens PFM, the file selector:
+7. **Load.** `CMD LOAD` with no name opens PFM, the file selector:
    - ↑ ↓ move;
    - ← → page;
    - RETURN loads, or enters a folder;
@@ -35,7 +43,7 @@ What you need:
    - Q quits.
 
    `CMD LOAD"NAME"` and `CMD SAVE"NAME"` work as under CDOS 1.0.
-7. **Your programs.** Upload them on the web page's Files tab. Convert tape
+8. **Your programs.** Upload them on the web page's Files tab. Convert tape
    programs (`.ptp`) first with `tools/primo/ptp2disk.py`.
 
 Optional: `PFM_AUTOSTART=ON` in `PRIFLOP.CFG` (or on PFM's settings page)

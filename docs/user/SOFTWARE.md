@@ -72,11 +72,15 @@ cd PRIFLOP-main/release
 python3 deploy.py --ip 192.168.4.1 --dry-run     # see what it would do
 python3 deploy.py --ip 192.168.4.1               # the Primo files
 python3 deploy.py --ip 192.168.4.1 --c64-tests   # and the C64 tests
+python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip   # 307 Primo programs
 ```
 
 Use the drive's address (192.168.4.1 on its own network), and
 `--password` once you have changed the admin password. A different boot
 file already on the drive is kept unless you add `--replace-boot`.
+`--bundle` makes the package's folders on the drive and puts each program
+in its folder; it stops before uploading anything when the package does not
+fit ([Primo software packages](PRIMO-SOFTWARE.md)).
 
 ## The web page
 

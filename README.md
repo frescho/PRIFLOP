@@ -28,7 +28,7 @@ contributors to the RP2350, with these additions:
 |---|---|
 | [Hardware](docs/user/HARDWARE.md) | The board, the bus wiring, parts, power |
 | [Getting started](docs/user/SOFTWARE.md) | Flashing, first start, Wi-Fi, the web page, drive commands, troubleshooting |
-| [Quick start: the Primo](docs/user/QUICKSTART-PRIMO.md) | From a bare Pico to `CMD LOAD` on a Primo, in seven steps |
+| [Quick start: the Primo](docs/user/QUICKSTART-PRIMO.md) | From a bare Pico to `CMD LOAD` on a Primo, in eight steps |
 | [The Primo](docs/user/PRIMO.md) | The boot file, our DOS, the turbo, PFM |
 | [Primo software packages](docs/user/PRIMO-SOFTWARE.md) | Ready-made collections from the Primo's program library: sizes, how they were made, terms of use |
 | [Test programs](docs/user/TESTS.md) | IECTEST, IMGTEST, HUNGTEST, CRCCHECK, PTURBO: why, how, and what a pass looks like |
@@ -44,6 +44,9 @@ contributors to the RP2350, with these additions:
    name is `admin` and so is the password: change it on the Settings tab.
 4. For the Primo, run `python3 deploy.py --ip 192.168.4.1` in the `release/`
    folder: it uploads the boot file and PFM.
+   Optional: `python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip`
+   adds 307 Primo programs from the library, in their folders
+   ([Primo software packages](docs/user/PRIMO-SOFTWARE.md)).
 5. Upload your files, connect the drive to the computer's serial port, and
    `LOAD"$",8`.
 

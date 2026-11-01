@@ -22,6 +22,17 @@ The block counts were measured on the drive's own file system layout, with
 the boot file, PFM and `PRIFLOP.CFG` on it. A 16 MB board (untested) holds
 any of them.
 
+To put a package on the drive, in the `release/` folder:
+
+```bash
+python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip --dry-run
+python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip
+```
+
+It makes the folders and puts each program in its folder; a package that
+does not fit stops it before anything is uploaded. Then `CMD LOAD` on the
+Primo opens PFM, where RETURN enters a folder and loads a program.
+
 Each zip keeps the library's folders (`CDOS/`, `DEMOKAZI/`, ...) and has a
 `LIST.TXT` with each program's test result and a short description.
 

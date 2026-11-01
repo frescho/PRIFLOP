@@ -52,8 +52,8 @@ A PRIFLOP-ot egy Primo B64-en ('84.2 ROM) teszteltük, CDOS boot EPROM-mal.
 0. **A fájlok letöltése.** Töltsd le [a repót zipként](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip)
    (a GitHubon: zöld **Code** gomb, majd **Download ZIP**), és csomagold ki.
    Minden, ami a telepítéshez kell, a `PRIFLOP-main/release/` mappában van:
-   a `priflop.uf2` (a firmware), a `deploy.py`, valamint a `primo/` és a
-   `c64/` mappa.
+   a `priflop.uf2` (a firmware), a `deploy.py`, valamint a `primo/`, a
+   `c64/` és a `primo_software/` mappa.
 1. **Flashelés.** Tartsd lenyomva a Pico BOOTSEL gombját, dugd be USB-n egy
    számítógépbe, és másold a `PRIFLOP-main/release/priflop.uf2` fájlt a megjelenő `RP2350`
    meghajtóra.
@@ -65,13 +65,21 @@ A PRIFLOP-ot egy Primo B64-en ('84.2 ROM) teszteltük, CDOS boot EPROM-mal.
    `python3 deploy.py --ip 192.168.4.1`
    Ez feltölti a boot fájlt és a PFM-et. A boot fájl neve egyetlen bájt
    (0x85), ezért a weboldalról nem tölthető fel; ehhez a `deploy.py` kell.
-4. **Csatlakoztatás.** Dugd a kábelt a
+4. **Opcionális: Primo programok.** A Primo programkönyvtárából készült
+   kész csomagok a `release/primo_software/` mappában vannak. A kicsi,
+   307 programmal, elfér a meghajtón:
+   `python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip`
+   Létrehozza a mappákat a meghajtón, és minden programot a saját mappájába
+   tölt. Előbb a `--dry-run` kapcsolóval megnézheted, mit csinálna. A két
+   nagyobb csomaghoz 16 MB-os kártya kell. Méretek, készítés, felhasználási
+   feltételek: [Primo software packages](PRIMO-SOFTWARE.md).
+5. **Csatlakoztatás.** Dugd a kábelt a
    kikapcsolt Primo soros portjába. Ajánlott először a PriFlopot áram alá helyezni. 
-5. **Reset a BRK nyomva tartásával.** Tartsd lenyomva a BRK gombot, eközben nyomd
+6. **Reset a BRK nyomva tartásával.** Tartsd lenyomva a BRK gombot, eközben nyomd
    meg a resetet, majd engedd el a BRK-t. A boot fájl betöltődik és
    elindítja a DOS-t; a felirat `turbo`-t mutat, ha a gyors átvitel be van
    kapcsolva.
-6. **Betöltés.** A név nélküli `CMD LOAD` elindítja a PFM-et:
+7. **Betöltés.** A név nélküli `CMD LOAD` elindítja a PFM-et:
    - ↑ ↓: mozgatás;
    - ← →: lapozás;
    - RETURN: betöltés, vagy belépés egy mappába;
@@ -80,7 +88,7 @@ A PRIFLOP-ot egy Primo B64-en ('84.2 ROM) teszteltük, CDOS boot EPROM-mal.
 
    A `CMD LOAD"NÉV"` és a `CMD SAVE"NÉV"` úgy működik, mint a CDOS 1.0
    alatt.
-7. **Saját programok.** A weboldal Files fülén töltheted fel őket. A
+8. **Saját programok.** A weboldal Files fülén töltheted fel őket. A
    kazettás programokat (`.ptp`) előbb a `tools/primo/ptp2disk.py`-jal
    kell átalakítani PRG formátumba.
 
