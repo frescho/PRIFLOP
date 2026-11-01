@@ -49,13 +49,19 @@ A PRIFLOP-ot egy Primo B64-en ('84.2 ROM) teszteltük, CDOS boot EPROM-mal.
 
 ## Gyors kezdés (Primo)
 
+0. **A fájlok letöltése.** Töltsd le [a repót zipként](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip)
+   (a GitHubon: zöld **Code** gomb, majd **Download ZIP**), és csomagold ki.
+   Minden, ami a telepítéshez kell, a `PRIFLOP-main/release/` mappában van:
+   a `priflop.uf2` (a firmware), a `deploy.py`, valamint a `primo/` és a
+   `c64/` mappa.
 1. **Flashelés.** Tartsd lenyomva a Pico BOOTSEL gombját, dugd be USB-n egy
-   számítógépbe, és másold a `priflop.uf2` fájlt a megjelenő `RP2350`
+   számítógépbe, és másold a `PRIFLOP-main/release/priflop.uf2` fájlt a megjelenő `RP2350`
    meghajtóra.
 2. **Wi-Fi.** Csatlakozz a `PRIFLOP` hálózathoz, és nyisd meg a
    `http://192.168.4.1` címet (felhasználó: `admin`, jelszó: `admin`). A
    jelszót a Settings fülön azonnal változtasd meg.
-3. **A Primo fájlok feltöltése a meghajtóra.** A kicsomagolt zip könyvtárában:
+3. **A Primo fájlok feltöltése a meghajtóra.** Egy terminálban:
+   `cd PRIFLOP-main/release`, majd
    `python3 deploy.py --ip 192.168.4.1`
    Ez feltölti a boot fájlt és a PFM-et. A boot fájl neve egyetlen bájt
    (0x85), ezért a weboldalról nem tölthető fel; ehhez a `deploy.py` kell.

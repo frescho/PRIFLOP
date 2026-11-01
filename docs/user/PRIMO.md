@@ -43,7 +43,7 @@ boot file checks that the ROM is one it knows before it installs anything.
 | the boot file (named with the single byte 0x85) | Our DOS. The Primo's boot ROM loads this file after every reset. |
 | `PFM.PRG` | PFM, the file selector |
 
-The release's `deploy.py` puts both on the drive (see [Getting started](SOFTWARE.md#the-releases-files-on-the-drive)). The boot file's name is
+`release/deploy.py` puts both on the drive (see [Getting started](SOFTWARE.md#the-releases-files-on-the-drive)). The boot file's name is
 one raw byte (0x85, the Primo's `CMD` token), not a name you can type, so
 upload it with the tool rather than through the web page.
 

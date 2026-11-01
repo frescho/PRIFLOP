@@ -35,12 +35,13 @@ contributors to the RP2350, with these additions:
 
 ## Quick start
 
-1. Download the release zip and unpack it.
+1. Download [the repository as a zip](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip) and unpack it. Everything
+   to install is in `PRIFLOP-main/release/` ([what is there](docs/user/SOFTWARE.md#getting-the-files)).
 2. Hold the Pico's BOOTSEL button while plugging it into a computer, and copy
-   `priflop.uf2` to the `RP2350` drive that appears.
+   `release/priflop.uf2` to the `RP2350` drive that appears.
 3. Join the Wi-Fi network `PRIFLOP` and open `http://192.168.4.1`. The user
    name is `admin` and so is the password: change it on the Settings tab.
-4. For the Primo, run `python3 deploy.py --ip 192.168.4.1` from the release
+4. For the Primo, run `python3 deploy.py --ip 192.168.4.1` in the `release/`
    folder: it uploads the boot file and PFM.
 5. Upload your files, connect the drive to the computer's serial port, and
    `LOAD"$",8`.

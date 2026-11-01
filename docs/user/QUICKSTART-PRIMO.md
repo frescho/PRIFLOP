@@ -9,13 +9,16 @@ What you need:
 - a Pico 2 W wired as in [Hardware](HARDWARE.md);
 - a Primo-to-Commodore serial cable;
 - a USB power supply;
-- the release zip.
+- the files from the repository's [`release/`](../../release/) folder: download
+  [the repository as a zip](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip) and unpack it
+  ([Getting the files](SOFTWARE.md#getting-the-files)).
 
 1. **Flash.** Hold BOOTSEL, plug the Pico into a computer, and copy
-   `priflop.uf2` to the `RP2350` drive that appears.
+   `PRIFLOP-main/release/priflop.uf2` to the `RP2350` drive that appears.
 2. **Wi-Fi.** Join the network `PRIFLOP` and open `http://192.168.4.1`
    (user `admin`, password `admin`). Change the password on the Settings tab.
-3. **Put the Primo files on the drive.** From the unpacked release folder:
+3. **Put the Primo files on the drive.** In a terminal:
+   `cd PRIFLOP-main/release`, then
    `python3 deploy.py --ip 192.168.4.1`
    This uploads the boot file and PFM. The boot file's name is one raw
    byte, so the web page cannot upload it; use `deploy.py`.

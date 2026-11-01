@@ -22,7 +22,7 @@ Where the programs come from:
 
 | Program | Computer | How to get it onto the drive |
 |---|---|---|
-| IECTEST, IMGTEST, HUNGTEST | C64 | In the release: `python3 deploy.py --ip <address> --c64-tests` |
+| IECTEST, IMGTEST, HUNGTEST | C64 | In `release/`: `python3 deploy.py --ip <address> --c64-tests` |
 | SJLOAD, CRCCHECK | C64 | Third-party, from the SJLOAD disk; not included |
 | PTURBO8, PTURBO9 | Primo | From the source: assemble `tools/primo/turbo/pturbo.asm` |
 

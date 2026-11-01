@@ -1,11 +1,31 @@
 # Getting started
 
+## Getting the files
+
+Everything you need to install is in the repository's
+[`release/`](../../release/) folder:
+
+| File | What |
+|---|---|
+| [`priflop.uf2`](../../release/priflop.uf2) | The firmware, for flashing |
+| [`deploy.py`](../../release/deploy.py) | The tool that puts the files below on the drive |
+| `primo/boot.prg`, `primo/PFM.PRG` | The Primo's boot file (our DOS) and PFM |
+| `c64/` | The C64 test programs and their disk image |
+| `SHA256SUMS` | Checksums |
+
+1. Download the repository as a zip: [https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip)
+   (on GitHub: the green **Code** button, then **Download ZIP**).
+2. Unpack it. The files are in the folder `PRIFLOP-main/release/`.
+
+`deploy.py` needs the `primo/` and `c64/` folders next to it, so run it
+from `release/` as it comes, not a copy of the script alone.
+
 ## Flashing
 
 1. Unplug the Pico.
 2. Hold its BOOTSEL button and plug it into a computer by USB. A drive called
    `RP2350` appears.
-3. Copy `priflop.uf2` onto it. The Pico restarts on its own as PRIFLOP.
+3. Copy `release/priflop.uf2` ([Getting the files](#getting-the-files)) onto it. The Pico restarts on its own as PRIFLOP.
 
 A reflash keeps your files and your saved drive settings.
 
@@ -42,11 +62,12 @@ The settings live in a text file on the drive, `PRIFLOP.CFG`:
 
 ## The release's files on the drive
 
-The release zip has a small tool, `deploy.py` (Python 3.8 or later, nothing
+The `release/` folder ([Getting the files](#getting-the-files)) has a small tool, `deploy.py` (Python 3.8 or later, nothing
 to install), that uploads the Primo's boot file and PFM, and with
-`--c64-tests` the C64 test programs. From the unpacked release folder:
+`--c64-tests` the C64 test programs. In a terminal, in the `release/` folder:
 
 ```bash
+cd PRIFLOP-main/release
 python3 deploy.py --ip 192.168.4.1 --dry-run     # see what it would do
 python3 deploy.py --ip 192.168.4.1               # the Primo files
 python3 deploy.py --ip 192.168.4.1 --c64-tests   # and the C64 tests
