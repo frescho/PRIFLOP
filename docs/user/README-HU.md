@@ -69,9 +69,9 @@ A PRIFLOP-ot egy Primo B64-en ('84.2 ROM) teszteltük, CDOS boot EPROM-mal.
    kész csomagok a `release/primo_software/` mappában vannak. A kicsi,
    307 programmal, elfér a meghajtón:
    `python3 deploy.py --ip 192.168.4.1 --bundle primo_software/primo-library-small.zip`
-   Létrehozza a mappákat a meghajtón, és minden programot a saját mappájába
-   tölt. Előbb a `--dry-run` kapcsolóval megnézheted, mit csinálna. A két
-   nagyobb csomaghoz 16 MB-os kártya kell. Méretek, készítés, felhasználási
+   Létrehozza a mappákat a meghajtón, és minden programot feltölt a saját.
+   Előbb a `--dry-run` kapcsolóval megnézheted, mit csinálna. A két
+   nagyobb csomaghoz 16 MB-os kártya kell. Méretek, létrehozás, felhasználási
    feltételek: [Primo software packages](PRIMO-SOFTWARE.md).
 5. **Csatlakoztatás.** Dugd a kábelt a
    kikapcsolt Primo soros portjába. Ajánlott először a PriFlopot áram alá helyezni. 
