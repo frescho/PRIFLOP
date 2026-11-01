@@ -11,6 +11,7 @@ Everything you need to install is in the repository's
 | [`deploy.py`](../../release/deploy.py) | The tool that puts the files below on the drive |
 | `primo/boot.prg`, `primo/PFM.PRG` | The Primo's boot file (our DOS) and PFM |
 | `c64/` | The C64 test programs and their disk image |
+| `primo_software/` | Primo program packages ([Primo software packages](PRIMO-SOFTWARE.md)) |
 | `SHA256SUMS` | Checksums |
 
 1. Download the repository as a zip: [https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip](https://github.com/frescho/PRIFLOP/archive/refs/heads/main.zip)

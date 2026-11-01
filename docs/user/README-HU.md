@@ -102,6 +102,7 @@ rajz, a DIN-dugó lábkiosztása és a Primo kábel bekötése a
 | [Hardware](HARDWARE.md) | A kártya, a bekötés, alkatrészek, tápellátás |
 | [The Primo](PRIMO.md) | A boot fájl, a DOS, a turbó, a PFM |
 | [Getting started](SOFTWARE.md) | Flashelés, Wi-Fi, a weboldal, hibaelhárítás |
+| [Primo software packages](PRIMO-SOFTWARE.md) | Kész programcsomagok a Primo programkönyvtárából: méret, készítés, felhasználási feltételek |
 | [Test programs](TESTS.md) | A tesztprogramok: miért, hogyan, mi a jó eredmény |
 | [Building from source](BUILDING.md) | Fordítás forrásból |
 

@@ -30,6 +30,7 @@ contributors to the RP2350, with these additions:
 | [Getting started](docs/user/SOFTWARE.md) | Flashing, first start, Wi-Fi, the web page, drive commands, troubleshooting |
 | [Quick start: the Primo](docs/user/QUICKSTART-PRIMO.md) | From a bare Pico to `CMD LOAD` on a Primo, in seven steps |
 | [The Primo](docs/user/PRIMO.md) | The boot file, our DOS, the turbo, PFM |
+| [Primo software packages](docs/user/PRIMO-SOFTWARE.md) | Ready-made collections from the Primo's program library: sizes, how they were made, terms of use |
 | [Test programs](docs/user/TESTS.md) | IECTEST, IMGTEST, HUNGTEST, CRCCHECK, PTURBO: why, how, and what a pass looks like |
 | [Building from source](docs/user/BUILDING.md) | Toolchains, the build, the tests |
 
