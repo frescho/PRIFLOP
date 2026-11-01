@@ -134,3 +134,5 @@ must stay 0. An error prints a line before that: a letter for the phase
 (S save, L load, T type or length, C compare, V or W verify), the size's
 number, and a code. Code 255 means a bus error. On the drive, `pt_aborted`
 stays 0.
+
+![PTURBO8 on a Primo B64: 13 rounds, 117 files, no errors](images/pturbo-primo.png)
