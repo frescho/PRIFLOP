@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="400" viewBox="0 0 700 400" font-family="Helvetica, Arial, sans-serif" font-size="14">
+  <title>5-pin DIN plug for the Primo, solder side: which wire goes to which Pico 2 W pin</title>
+  <rect width="700" height="400" fill="#ffffff"/>
+
+  <!-- connector, solder side of the plug; pin positions from FDU-1109 drawing 1109-06 -->
+  <circle cx="200" cy="200" r="140" fill="#f4f4f4" stroke="#000" stroke-width="3"/>
+  <rect x="184" y="56" width="32" height="34" fill="#ffffff" stroke="#000" stroke-width="2"/>
+  <text x="200" y="45" text-anchor="middle" font-size="12">notch</text>
+
+  <!-- pins, clockwise from the notch: 1 at 90 deg, 4 at 135, 2 at 180, 5 at 225, 3 at 270; radius 85 -->
+  <g stroke="#000" stroke-width="2">
+    <circle cx="285" cy="200" r="13" fill="#9ecbff" stroke-dasharray="3 3"/>
+    <circle cx="260" cy="260" r="13" fill="#cccccc"/>
+    <circle cx="200" cy="285" r="13" fill="#ffb3b3"/>
+    <circle cx="140" cy="260" r="13" fill="#ffe08a"/>
+    <circle cx="115" cy="200" r="13" fill="#b3e6b3"/>
+  </g>
+  <g font-weight="bold" text-anchor="middle" font-size="14">
+    <text x="285" y="205">1</text>
+    <text x="260" y="265">4</text>
+    <text x="200" y="290">2</text>
+    <text x="140" y="265">5</text>
+    <text x="115" y="205">3</text>
+  </g>
+
+  <!-- legend -->
+  <g font-size="14">
+    <circle cx="400" cy="95" r="9" fill="#ffb3b3" stroke="#000"/><text x="418" y="100">2  ATN   → GP2 (pin 4) via 100 Ω</text>
+    <circle cx="400" cy="130" r="9" fill="#ffe08a" stroke="#000"/><text x="418" y="135">5  CLOCK → GP3 (pin 5) via 100 Ω</text>
+    <circle cx="400" cy="165" r="9" fill="#b3e6b3" stroke="#000"/><text x="418" y="170">3  DATA  → GP6 (pin 9) via 100 Ω</text>
+    <circle cx="400" cy="200" r="9" fill="#cccccc" stroke="#000"/><text x="418" y="205">4  GND   → GND (pin 3)</text>
+    <circle cx="400" cy="235" r="9" fill="#9ecbff" stroke="#000" stroke-dasharray="3 3"/><text x="418" y="240">1  SRQ: may stay free</text>
+  </g>
+
+  <text x="20" y="372" font-size="12" fill="#333">Seen from the solder side of the plug that goes into the Primo's serial socket, notch up.</text>
+  <text x="20" y="390" font-size="12" fill="#333">Pin positions from the FDU-1109 manual, drawing 1109-06. Seen from the pin side, the picture is mirrored.</text>
+</svg>

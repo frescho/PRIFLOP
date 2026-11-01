@@ -123,10 +123,42 @@ drive's 6-pin plug:
 | 5 | CLOCK | 4 |
 | 3 | DATA | 5 |
 | 4 | GND | 2 |
-| 1 | — | 1 (SRQ, unused) |
+| 1 | SRQ | 1 (unused) |
 | — | — | 6 (RESET, not wired) |
 
 Source: the cable table in the FDU-1109 manual, appendix D.
+
+### The adapter cable
+
+![FDU-1109 drawing 1109-06: the Primo–Commodore serial bus cable](images/fdu1109-cable.jpg)
+
+*The Primo–Commodore serial bus cable, drawing 1109-06 (1985) from the
+FDU-1109 floppy drive's manual, as kept on the
+[Primo homepage](https://primo.homeserver.hu/html/hardverfdu1109.html)
+([the scan](https://primo.homeserver.hu/html/pic/fdu1109/fdu1109_kabel.jpg)).
+Both plugs are drawn from the solder side ("forrasztási oldalról nézve"):
+the 5-pin DIN plug (DKAS05) for the Primo, the 6-pin one (DKAN06) for the
+drive. Reproduced unchanged; it belongs to its authors.*
+
+### Wiring the Pico straight to the Primo
+
+The adapter cable is not needed: the Pico's wires can go to a 5-pin DIN plug
+directly, with the same four resistors. *Not tested yet: the drive was
+tested through the adapter cable.*
+
+![The Primo's 5-pin DIN plug from the solder side, wired to the Pico 2 W](images/primo-din5-pico.svg)
+
+| Primo pin (5-pin DIN) | Signal | GPIO | Pico pin | Resistor |
+|---|---|---|---|---|
+| 2 | ATN | GP2 | 4 | 100 Ω |
+| 5 | CLOCK | GP3 | 5 | 100 Ω |
+| 3 | DATA | GP6 | 9 | 100 Ω |
+| 4 | GND | GND | 3 (or any GND) | — |
+| 1 | SRQ | (GP7) | (10) | may stay free |
+
+The pin positions are those of drawing 1109-06; the signals are those of
+its table and of the cable table above. The drive does not use SRQ with the
+Primo.
 
 An A series Primo has no serial port fitted, and every Primo needs the CDOS
 boot EPROM to start from the drive. See
